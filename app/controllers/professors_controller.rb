@@ -14,15 +14,15 @@ class ProfessorsController < ApplicationController
   end
 
   # POST /professors
-  def create
-    @professor = Professor.new(professor_params)
+  # def create
+  #   @professor = Professor.new(professor_params)
 
-    if @professor.save
-      render json: @professor, status: :created, location: @professor
-    else
-      render json: @professor.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @professor.save
+  #     render json: @professor, status: :created, location: @professor
+  #   else
+  #     render json: @professor.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # PATCH/PUT /professors/1
   def update

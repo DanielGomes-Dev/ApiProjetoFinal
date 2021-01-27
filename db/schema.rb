@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2021_01_27_025658) do
   end
 
   create_table "can_lectures", force: :cascade do |t|
-    # t.integer "professor_id", null: false
-    # t.integer "subject_id", null: false
+    t.integer "professor_id", null: false
+    t.integer "subject_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["professor_id"], name: "index_can_lectures_on_professor_id"
@@ -141,9 +141,12 @@ ActiveRecord::Schema.define(version: 2021_01_27_025658) do
   end
 
   create_table "students", force: :cascade do |t|
+    t.string "registration", null: false
     t.integer "user_id", null: false
+    t.integer "course_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_students_on_course_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
@@ -192,6 +195,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_025658) do
   add_foreign_key "matriculates", "students"
   add_foreign_key "professors", "users"
   add_foreign_key "requirements", "subjects"
+  add_foreign_key "students", "courses"
   add_foreign_key "students", "users"
   add_foreign_key "subjects", "school_years"
 end
