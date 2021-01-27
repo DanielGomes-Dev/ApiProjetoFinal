@@ -27,7 +27,6 @@ end
         semester: 1
         
     })
-    puts "teste" , subjects.name
 end
 
 5.times do
