@@ -13,10 +13,19 @@ class AuthenticationController < ApplicationController
     end
 
     def register
-            @user = User.new(user_params)
-        
+
+            @user = User.new(user_params.except(:address))
             if @user.save
-              render json: @user, status: :created, location: @user
+              
+              userAddress = user_params[:address]
+              userAddress[:user_id] = @user.id
+
+              @userAddress = Address.new(userAddress)
+              if @userAddress.save
+                render json: @user, status: :created, location: @user
+              else
+              render json: @userAddress.errors, status: :unprocessable_entity
+              end
             else
               render json: @user.errors, status: :unprocessable_entity
             end
@@ -25,6 +34,6 @@ class AuthenticationController < ApplicationController
     private
      # Only allow a list of trusted parameters through.
     def user_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation, :cpf, :rg, :role, :nationality, :birthdate, :address)
+        params.require(:user).permit(:name, :email, :password, :password_confirmation, :cpf, :rg, :role, :nationality, :birthdate, address: {})
     end
 end

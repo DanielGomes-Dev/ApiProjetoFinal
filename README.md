@@ -22,3 +22,173 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+### Request Methods
+
+
+|Method|Description|Example|
+| ------ | ------ | ----- |
+|get|For returning resources from read-only endpoint|Get raw materials|
+|post|For creating new resources|Create new raw materials|
+|put|For updating an existing resource|Editing raw materials|
+
+### Response Status Codes
+
+Another thing to notice is API response `status` codes, as a rule of thumb:
+
+|Status|Description|Example|
+| ------ | ------ | ----- |
+|200|Success|Retrieved list of raw materials|
+|201|Created|raw material was created|
+|400|Bad request|Invalid entry from raw materials|
+|404|Not found|raw materials not found|
+|500|Error|Exception happened on server|
+
+
+## REST API
+
+The REST API to the example app is described below.
+
+## Get list of raw materials
+
+### Request
+
+`GET /users/`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/users
+
+### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 2487
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    []
+    
+
+## Create a new raw materials
+
+### Request
+
+`POST /users/`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+        "user":
+        {
+            "name":"Usuario1",
+            "email":"Usuario2@id.uff.br",
+            "password":"123456",
+            "password_confirmation":"123456",
+            "cpf":"123.120.123-00",
+            "rg":"123.120.123-2",
+            "role":2,
+            "address":{
+                "street":"rua",
+                "number":"numero",
+                "complement":"complemento",
+                "neighborhood":"Bairro",
+                "city":"cidade",
+                "state":"Estado"			
+            },
+            "nationality":"nationality",
+            "birthdate":"22/06/1566"
+        }
+    }'
+    https://quiet-peak-28566.herokuapp.com/users
+
+### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 118
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {}
+
+## Get a specific raw material
+
+### Request
+
+`GET /rawMaterials?name=XXX`
+
+    curl -i -H 'Accept: application/json' http://localhost:3333/rawMaterials?name=ovo
+
+### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 628
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    [{"id":17,"name":"Ovo","quantity":89}]
+
+## Get a non-existent raw materials
+
+### Request
+
+`GET /rawMaterials?name=nonExistent`
+
+    curl -i -H 'Accept: application/json' http://localhost:3333/rawMaterials?name=nonExistent
+
+### Response
+    
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 2
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+    
+    []
+
+## Update the system after getting raw material
+
+### Request
+
+`PUT /rawMaterials/:id/request`
+
+    curl -i -X PUT -H "Content-Type: application/json" -d '{"user":"user","quantity":1}' http://localhost:3333/rawMaterials/1/request
+
+
+
+### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 31
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {"quantity":1,"user":"user"}
+
+
+##  Update the system after getting raw material using invalid params
+
+### Request
+
+`PUT /rawMaterials/:id/request`
+
+    curl -i -X PUT -H "Content-Type: application/json" -d '{"user":"user","quantity":"five"}' http://localhost:3333/rawMaterials/1/request
+
+
+### Response
+
+    HTTP/1.1 400 Bad Request
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 47
+    Connection: keep-alive
+    Keep-Alive: timeout=5
+
+    {"err":"the field, quantity must be a integer"}
