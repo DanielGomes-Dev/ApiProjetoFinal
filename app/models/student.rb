@@ -1,8 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :user
-
-  has_many :can_learns
-  has_many :courses, through: :can_learns
+  belongs_to :course
 
   has_many :get_grades
   has_many :grades, through: :get_grades

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_025658) do
+ActiveRecord::Schema.define(version: 2021_01_27_024830) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -32,15 +32,6 @@ ActiveRecord::Schema.define(version: 2021_01_27_025658) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["school_year_id"], name: "index_appointments_on_school_year_id"
     t.index ["subject_id"], name: "index_appointments_on_subject_id"
-  end
-
-  create_table "can_learns", force: :cascade do |t|
-    t.integer "student_id", null: false
-    t.integer "courses_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["courses_id"], name: "index_can_learns_on_courses_id"
-    t.index ["student_id"], name: "index_can_learns_on_student_id"
   end
 
   create_table "can_lectures", force: :cascade do |t|
@@ -176,8 +167,6 @@ ActiveRecord::Schema.define(version: 2021_01_27_025658) do
   add_foreign_key "addresses", "users"
   add_foreign_key "appointments", "school_years"
   add_foreign_key "appointments", "subjects"
-  add_foreign_key "can_learns", "courses", column: "courses_id"
-  add_foreign_key "can_learns", "students"
   add_foreign_key "can_lectures", "professors"
   add_foreign_key "can_lectures", "subjects"
   add_foreign_key "classrooms", "professors"

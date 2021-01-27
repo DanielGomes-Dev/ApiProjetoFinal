@@ -35,7 +35,7 @@ class AuthenticationController < ApplicationController
     def student_registrate (user)
 
       # user.registration = "#{School_year.last.year}#{Course.find(user.course)}#{rand(01...99)}"
-      student = Student.new({user_id:user.id, course_id:user.course, registration: "123456678910" });
+      student = Student.new({user_id:user.id, course_id:1, registration: "123456678910" });
 
       if student.save
         return true          
