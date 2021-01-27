@@ -52,15 +52,6 @@ ActiveRecord::Schema.define(version: 2021_01_27_025658) do
     t.index ["subject_id"], name: "index_can_lectures_on_subject_id"
   end
 
-  create_table "can_teaches", force: :cascade do |t|
-    t.integer "professor_id", null: false
-    t.integer "classrooms_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["classrooms_id"], name: "index_can_teaches_on_classrooms_id"
-    t.index ["professor_id"], name: "index_can_teaches_on_professor_id"
-  end
-
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
     t.integer "code"
@@ -186,8 +177,6 @@ ActiveRecord::Schema.define(version: 2021_01_27_025658) do
   add_foreign_key "can_learns", "students"
   add_foreign_key "can_lectures", "professors"
   add_foreign_key "can_lectures", "subjects"
-  add_foreign_key "can_teaches", "classrooms", column: "classrooms_id"
-  add_foreign_key "can_teaches", "professors"
   add_foreign_key "classrooms", "professors"
   add_foreign_key "classrooms", "school_years"
   add_foreign_key "classrooms", "subjects"
