@@ -59,6 +59,14 @@ The REST API to the example app is described below.
 
     curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/users
 
+`GET /subjects/`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/subjects
+
+`GET /courses/`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/courses 
+
 ### Response
 
     HTTP/1.1 200 OK
@@ -71,11 +79,9 @@ The REST API to the example app is described below.
     []
     
 
-## Create a new raw materials
-
 ### Request
 
-`POST /users/`
+`GET /users/`
 
     curl -i -X POST -H "Content-Type: application/json" -d 
     '{
@@ -107,32 +113,57 @@ The REST API to the example app is described below.
     HTTP/1.1 200 OK
     X-Powered-By: Express
     Content-Type: application/json; charset=utf-8
-    Content-Length: 118
-    Connection: keep-alive
-    Keep-Alive: timeout=5
 
-    {}
-
-## Get a specific raw material
 
 ### Request
 
-`GET /rawMaterials?name=XXX`
+`GET /subjects`
 
-    curl -i -H 'Accept: application/json' http://localhost:3333/rawMaterials?name=ovo
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/subjects
+    '{
+        "id": 1,
+        "name": "Applied Science (Psychology)",
+        "workload": 1,
+        "knowledge_area": "Doctorate",
+        "created_at": "2021-01-27T21:42:39.537Z",
+        "updated_at": "2021-01-27T21:42:39.537Z",
+        "semester": 1
+    }'
+
+         https://quiet-peak-28566.herokuapp.com/subjects
 
 ### Response
 
     HTTP/1.1 200 OK
     X-Powered-By: Express
     Content-Type: application/json; charset=utf-8
-    Content-Length: 628
-    Connection: keep-alive
-    Keep-Alive: timeout=5
 
-    [{"id":17,"name":"Ovo","quantity":89}]
 
-## Get a non-existent raw materials
+### Request
+
+`GET /courses`
+
+        curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/courses
+
+    '{
+        "id": 1,
+        "name": "Medicine 376",
+        "knowledge_area": "Doctorate",
+        "code": 2387,
+        "campus": "Brighthurst Campus",
+        "created_at": "2021-01-27T21:45:51.269Z",
+        "updated_at": "2021-01-27T21:45:51.269Z"
+    }'
+
+    https://quiet-peak-28566.herokuapp.com/courses
+
+### Response
+
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Content-Type: application/json; charset=utf-8
+
+<!-- ## Get a non-existent raw materials
 
 ### Request
 
@@ -149,7 +180,7 @@ The REST API to the example app is described below.
     Connection: keep-alive
     Keep-Alive: timeout=5
     
-    []
+    [] -->
 
 ## Update the system after getting raw material
 
