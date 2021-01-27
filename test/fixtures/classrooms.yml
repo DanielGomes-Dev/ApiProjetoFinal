@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  code: 1
+  calendar: 2021-01-26
+  subject_class: MyString
+  quantity: 1
+  subject: one
+  professor: one
+  school_year: one
+
+two:
+  name: MyString
+  code: 1
+  calendar: 2021-01-26
+  subject_class: MyString
+  quantity: 1
+  subject: two
+  professor: two
+  school_year: two

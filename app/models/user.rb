@@ -15,7 +15,7 @@ class User < ApplicationRecord
         student: 0,
         professor: 1,
         course_head: 2,
-        course_department: 3,
+        head_department: 3,
         manager: 4
     }    
 end
