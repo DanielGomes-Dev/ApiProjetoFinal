@@ -22,7 +22,7 @@ class AuthenticationController < ApplicationController
 
               @userAddress = Address.new(userAddress)
               if @userAddress.save
-                render json: @user, status: :created, location: @user
+                render json: @user, status: :created
               else
               render json: @userAddress.errors, status: :unprocessable_entity
               end
