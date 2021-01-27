@@ -16,6 +16,25 @@ require "faker"
         email: Faker::Internet.email,
         birthdate: Faker::Date.birthday,
         role: Faker::Number.between(from: 0, to: 4),
-        password: "1234"
+        password: "12345"
+    })
+end
+15.times do
+    subjects = Subject.create({
+        name: Faker::Educator.subject,
+        workload: 1,
+        knowledge_area: Faker::Job.education_level,
+        semester: 1
+        
+    })
+    puts "teste" , subjects.name
+end
+
+5.times do
+    courses = Course.create({
+        name: Faker::Educator.course_name,
+        knowledge_area: Faker::Job.education_level,
+        code: Faker::Number.number(digits: 10),
+        campus: Faker::Educator.campus
     })
 end
