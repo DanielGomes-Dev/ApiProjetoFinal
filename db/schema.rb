@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_021041) do
+ActiveRecord::Schema.define(version: 2021_01_27_022115) do
 
   create_table "can_lectures", force: :cascade do |t|
     t.integer "professor_id", null: false
@@ -46,11 +46,34 @@ ActiveRecord::Schema.define(version: 2021_01_27_021041) do
     t.index ["subject_id"], name: "index_classrooms_on_subject_id"
   end
 
+  create_table "matriculates", force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "classroom_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_matriculates_on_classroom_id"
+    t.index ["student_id"], name: "index_matriculates_on_student_id"
+  end
+
   create_table "professors", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_professors_on_user_id"
+  end
+
+  create_table "requirements", force: :cascade do |t|
+    t.integer "subject_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_id"], name: "index_requirements_on_subject_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_students_on_user_id"
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -84,6 +107,10 @@ ActiveRecord::Schema.define(version: 2021_01_27_021041) do
   add_foreign_key "classrooms", "professors"
   add_foreign_key "classrooms", "school_years"
   add_foreign_key "classrooms", "subjects"
+  add_foreign_key "matriculates", "classrooms"
+  add_foreign_key "matriculates", "students"
   add_foreign_key "professors", "users"
+  add_foreign_key "requirements", "subjects"
+  add_foreign_key "students", "users"
   add_foreign_key "subjects", "school_years"
 end
