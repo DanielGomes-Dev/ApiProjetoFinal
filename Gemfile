@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# ruby '2.7.2'
-ruby '2.6.6'
+ruby '2.7.2'
+# ruby '2.6.6'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -30,7 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rack-cors'
 
 group :production do
-  gem 'pg'
+  # gem 'pg'
 end
 
 group :development, :test do

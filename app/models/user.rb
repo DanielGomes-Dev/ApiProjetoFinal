@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-    has_one :address 
-    has_one :professor 
-    has_one :student 
+    has_one :address, dependent: :destroy
+    has_one :professor, dependent: :destroy
+    has_one :student, dependent: :destroy
     has_secure_password
 
     #name

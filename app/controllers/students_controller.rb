@@ -14,15 +14,23 @@ class StudentsController < ApplicationController
   end
 
   # POST /students
-  # def create
-  #   @student = Student.new(student_params)
 
-  #   if @student.save
-  #     render json: @student, status: :created, location: @student
-  #   else
-  #     render json: @student.errors, status: :unprocessable_entity
-  #   end
-  # end
+  def create
+    user = user_params
+    user[:role] = 0
+
+    @user = User.new(user.except(:address))
+    
+    if @user.save && address_register(@user)  && student_registrate(@user);
+            render json: @user, status: :created, location: @user
+
+    else
+      @user.destroy
+      render json: @user.errors, status: :unprocessable_entity
+
+    end
+        
+  end
 
   # # PATCH/PUT /students/1
   def update
@@ -48,4 +56,22 @@ class StudentsController < ApplicationController
     def student_params
       params.require(:student).permit(:user_id)
     end
+
+    def student_registrate (user)
+
+      # user.registration = "#{School_year.last.year}#{Course.find(1)}#{rand(01...99)}"
+      student = Student.new({user_id:user.id, course_id:1, registration: "123456678910" });
+
+      if student.save
+        return true          
+      else
+        return false
+      end
+      
+    end
+
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address: {})
+  end
+
 end
