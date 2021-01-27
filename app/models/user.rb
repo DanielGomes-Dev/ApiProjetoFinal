@@ -31,7 +31,7 @@ class User < ApplicationRecord
     validates :birthdate, presence: true
 
     #Address
-    
+    validates :address, presence: false
 
     #A role só pode ser definida por um numero!
 
