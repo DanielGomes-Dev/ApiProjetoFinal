@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_022732) do
+ActiveRecord::Schema.define(version: 2021_01_27_024830) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer "school_year_id", null: false
@@ -53,6 +53,38 @@ ActiveRecord::Schema.define(version: 2021_01_27_022732) do
     t.index ["professor_id"], name: "index_classrooms_on_professor_id"
     t.index ["school_year_id"], name: "index_classrooms_on_school_year_id"
     t.index ["subject_id"], name: "index_classrooms_on_subject_id"
+  end
+
+  create_table "get_grades", force: :cascade do |t|
+    t.integer "grade_id", null: false
+    t.integer "student_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["grade_id"], name: "index_get_grades_on_grade_id"
+    t.index ["student_id"], name: "index_get_grades_on_student_id"
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.float "grade"
+    t.integer "student_id", null: false
+    t.integer "subject_id", null: false
+    t.integer "professor_id", null: false
+    t.integer "classroom_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_grades_on_classroom_id"
+    t.index ["professor_id"], name: "index_grades_on_professor_id"
+    t.index ["student_id"], name: "index_grades_on_student_id"
+    t.index ["subject_id"], name: "index_grades_on_subject_id"
+  end
+
+  create_table "launch_grades", force: :cascade do |t|
+    t.integer "professor_id", null: false
+    t.integer "grade_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["grade_id"], name: "index_launch_grades_on_grade_id"
+    t.index ["professor_id"], name: "index_launch_grades_on_professor_id"
   end
 
   create_table "matriculates", force: :cascade do |t|
@@ -126,6 +158,14 @@ ActiveRecord::Schema.define(version: 2021_01_27_022732) do
   add_foreign_key "classrooms", "professors"
   add_foreign_key "classrooms", "school_years"
   add_foreign_key "classrooms", "subjects"
+  add_foreign_key "get_grades", "grades"
+  add_foreign_key "get_grades", "students"
+  add_foreign_key "grades", "classrooms"
+  add_foreign_key "grades", "professors"
+  add_foreign_key "grades", "students"
+  add_foreign_key "grades", "subjects"
+  add_foreign_key "launch_grades", "grades"
+  add_foreign_key "launch_grades", "professors"
   add_foreign_key "matriculates", "classrooms"
   add_foreign_key "matriculates", "students"
   add_foreign_key "professors", "users"
