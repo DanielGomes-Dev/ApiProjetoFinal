@@ -7,13 +7,27 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
+25.times do
+    users = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: Faker::Number.between(from: 0, to: 4),
+        password: "12345"
+    })
+end
 15.times do
     subjects = Subject.create({
         name: Faker::Educator.subject,
-        workload:Faker::Number.number(digits: 3),
-        knowledge_area: Faker::Job.education_level
-
+        workload: 1,
+        knowledge_area: Faker::Job.education_level,
+        semester: 1
+        
     })
+    puts "teste" , subjects.name
 end
 
 5.times do
