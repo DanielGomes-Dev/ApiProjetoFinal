@@ -59,15 +59,6 @@ ActiveRecord::Schema.define(version: 2021_01_27_201706) do
     t.index ["subject_id"], name: "index_classrooms_on_subject_id"
   end
 
-  create_table "courses", force: :cascade do |t|
-    t.string "name"
-    t.string "knowledge_area"
-    t.integer "code"
-    t.string "campus"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.string "knowledge_area"
