@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :addresses
+  resources :courses
+  resources :grades
+  resources :school_years
+  resources :students
+  resources :classrooms
+  resources :subjects
+  resources :professors
   resources :users
   post '/login' ,to: 'authentication#login'
   post '/register',to: 'authentication#register'
