@@ -22,8 +22,9 @@ class AuthenticationController < ApplicationController
               render json: @user, status: :created, location: @user
 
       else
-              @user.delete()
               render json: @user.errors, status: :unprocessable_entity
+              @user.delete()
+
       end
           
     end

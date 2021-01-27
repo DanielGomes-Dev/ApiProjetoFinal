@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_024830) do
+ActiveRecord::Schema.define(version: 2021_01_27_161149) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 2021_01_27_024830) do
   end
 
   create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.string "knowledge_area"
+    t.integer "code"
+    t.string "campus"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "departments", force: :cascade do |t|
     t.string "name"
     t.string "knowledge_area"
     t.integer "code"
@@ -164,6 +173,13 @@ ActiveRecord::Schema.define(version: 2021_01_27_024830) do
     t.string "password_digest"
   end
 
+  create_table "workers", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_workers_on_user_id"
+  end
+
   add_foreign_key "addresses", "users"
   add_foreign_key "appointments", "school_years"
   add_foreign_key "appointments", "subjects"
@@ -187,4 +203,5 @@ ActiveRecord::Schema.define(version: 2021_01_27_024830) do
   add_foreign_key "students", "courses"
   add_foreign_key "students", "users"
   add_foreign_key "subjects", "school_years"
+  add_foreign_key "workers", "users"
 end

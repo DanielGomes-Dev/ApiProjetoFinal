@@ -10,7 +10,7 @@ class User < ApplicationRecord
     #email
     validates :email, presence: true
     validates :email, uniqueness: true
-    validates :email, format: {with: /\b[A-Z0-9._%a-z\-]+@id\.uff\.br\z/, message: "O email deve ser da idUFF"}
+    #validates :email, format: {with: /\b[A-Z0-9._%a-z\-]+@id\.uff\.br\z/, message: "O email deve ser da idUFF"}
 
     #CPF
     validates :cpf, presence: true
@@ -31,7 +31,7 @@ class User < ApplicationRecord
     validates :birthdate, presence: true
 
     #Address
-    
+    validates :address, presence: false
 
     #A role só pode ser definida por um numero!
 
@@ -42,5 +42,5 @@ class User < ApplicationRecord
         course_head: 2,
         head_department: 3,
         manager: 4
-    }    
+    } 
 end

@@ -9,4 +9,6 @@ class ApplicationController < ActionController::API
 
         User.find_by(id: decoded[0]["user_id"])
     end
+
+    
 end
