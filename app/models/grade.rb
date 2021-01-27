@@ -8,10 +8,10 @@ class Grade < ApplicationRecord
 
   belongs_to :professor
   
-  has_many: get_grades
-  has_many:students, through: get_grade
+  has_many :get_grades
+  has_many :students, through: :get_grades
 
-  has_many: launch_grades
-  has_many: professors, through:launch_grade
+  has_many :launch_grades
+  has_many :professors, through: :launch_grades
 
 end
