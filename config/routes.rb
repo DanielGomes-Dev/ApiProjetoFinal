@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :coordinators
+  resources :relation_course_and_subjects
   resources :departments
   resources :workers
   resources :courses

@@ -13,18 +13,23 @@ class ApplicationController < ActionController::API
     end
 
      ## registro do endereço do usuario
-     def address_register(user)
+     def address_register (address = {} ,id)
 
-        userAddress = user_params[:address] || {}
-        userAddress[:user_id] = user.id
-  
-        @userAddress = Address.new(userAddress)
+        address[:user_id] = id
+        puts address, 'ok'
+        @userAddress = Address.new(address)
   
         if @userAddress.save
           return true
         else
+        puts @userAddress.errors, 'ok'
           return false
         end
+    end
+
+    def email_generate(user)
+      return "#{user[:name].split(" ").first}#{user[:name].split(" ").last}#{User.all.length}@id.uff.br"
+
     end
     
 end

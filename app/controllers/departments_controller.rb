@@ -15,7 +15,9 @@ class DepartmentsController < ApplicationController
 
   # POST /departments
   def create
-    @department = Department.new(department_params)
+
+    department = department_params
+    @department = Department.new(department)
 
     if @department.save
       render json: @department, status: :created, location: @department
@@ -46,6 +48,6 @@ class DepartmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def department_params
-      params.require(:department).permit(:name, :knowledge_area, :code, :campus)
+      params.require(:department).permit(:name, :coordinator_id, :knowledge_area, :code, :campus)
     end
 end

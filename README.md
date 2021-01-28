@@ -51,17 +51,36 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
 The REST API to the example app is described below.
 
-## Get list of raw materials
+## Get list
 
 ### Request
+
+## Usuarios
 
 `GET /users/`
 
     curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/users
 
+
+ ## Alunos
+
+`GET /students`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/students   
+
+## Alunos
+
+`GET /teachers`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/teachers   
+    
+## Matérias
+
 `GET /subjects/`
 
     curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/subjects
+
+## Cursos
 
 `GET /courses/`
 
@@ -76,46 +95,50 @@ The REST API to the example app is described below.
     Connection: keep-alive
     Keep-Alive: timeout=5
 
-    []
+    {}
     
 
-### Request
+### Cadastro
+## Alunos
 
-`GET /users/`
+`POST /students`
 
     curl -i -X POST -H "Content-Type: application/json" -d 
     '{
         "user":
-        {
-            "name":"Usuario1",
-            "email":"Usuario2@id.uff.br",
-            "password":"123456",
-            "password_confirmation":"123456",
-            "cpf":"123.120.123-00",
-            "rg":"123.120.123-2",
-            "role":2,
-            "address":{
-                "street":"rua",
-                "number":"numero",
-                "complement":"complemento",
-                "neighborhood":"Bairro",
-                "city":"cidade",
-                "state":"Estado"			
-            },
-            "nationality":"nationality",
-            "birthdate":"22/06/1566"
-        }
+            {
+                "name":"Usuario Usuario",
+                "password":"123456",
+                "cpf":"124.525.114-00",
+                "rg":"124.525.054-2",
+                "birthdate":"22/06/1566",
+                "address":{
+                    "state":"Rio de Janeiro"
+                },
+                "registration":"987654321"
+            }
+            
     }'
-    https://quiet-peak-28566.herokuapp.com/users
+    https://quiet-peak-28566.herokuapp.com/students
 
 ### Response
 
-    HTTP/1.1 200 OK
-    X-Powered-By: Express
+    HTTP/1.1 201 Created
     Content-Type: application/json; charset=utf-8
 
+        {
+        "id": 14,
+        "student": "Usuario Usuario",
+        "email": "UsuarioUsuario13@id.uff.br",
+        "course": "Biomedical Science 155",
+        "rg": "124.525.054-2",
+        "cpf": "124.525.114-00",
+        "registration": "987654321",
+        "birthdate": "1566-06-22"
+        }
 
-### Request
+
+### Professores
 
 `GET /subjects`
 
@@ -137,6 +160,38 @@ The REST API to the example app is described below.
     HTTP/1.1 200 OK
     X-Powered-By: Express
     Content-Type: application/json; charset=utf-8
+
+
+## Matérias
+
+`POST /subjects`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+        "subject":
+            {
+                "name":"Materia01",
+                "knowledge_area":"Matematica",
+                "workload":60
+            }
+    }'
+    https://quiet-peak-28566.herokuapp.com/subjects
+
+### Response
+
+    HTTP/1.1 201 Created
+    Content-Type: application/json; charset=utf-8
+
+        {
+        "id": 7,
+        "name": "Materia01",
+        "knowledge_area": "Matematica",
+        "workload": 60,
+        "department": "Departamento01"
+        }
+
+
+
 
 
 ### Request

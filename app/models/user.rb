@@ -2,6 +2,8 @@ class User < ApplicationRecord
     has_one :address, dependent: :destroy
     has_one :professor, dependent: :destroy
     has_one :student, dependent: :destroy
+    has_one :coordinator, dependent: :destroy
+
     has_secure_password
 
     #name
@@ -25,7 +27,7 @@ class User < ApplicationRecord
     validates :role, numericality: { only_integer: true }
 
     #Nationality
-    validates :nationality, presence: true
+    # validates :nationality, presence: true
 
     #birthdate
     validates :birthdate, presence: true

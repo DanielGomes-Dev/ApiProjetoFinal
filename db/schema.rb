@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_01_28_014836) do
+=======
+ActiveRecord::Schema.define(version: 2021_01_28_150336) do
+>>>>>>> ad3e0c7bb96872b276f57cb1fd6c6fad7f3c83e1
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -59,6 +63,15 @@ ActiveRecord::Schema.define(version: 2021_01_28_014836) do
     t.index ["subject_id"], name: "index_classrooms_on_subject_id"
   end
 
+  create_table "coordinators", force: :cascade do |t|
+    t.string "registration"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "type_coordinator"
+    t.index ["user_id"], name: "index_coordinators_on_user_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.string "knowledge_area"
@@ -75,6 +88,8 @@ ActiveRecord::Schema.define(version: 2021_01_28_014836) do
     t.string "campus"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "coordinator_id", null: false
+    t.index ["coordinator_id"], name: "index_departments_on_coordinator_id"
   end
 
   create_table "get_grades", force: :cascade do |t|
@@ -157,6 +172,8 @@ ActiveRecord::Schema.define(version: 2021_01_28_014836) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "semester"
+    t.integer "department_id", null: false
+    t.index ["department_id"], name: "index_subjects_on_department_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -188,6 +205,8 @@ ActiveRecord::Schema.define(version: 2021_01_28_014836) do
   add_foreign_key "classrooms", "professors"
   add_foreign_key "classrooms", "school_years"
   add_foreign_key "classrooms", "subjects"
+  add_foreign_key "coordinators", "users"
+  add_foreign_key "departments", "coordinators"
   add_foreign_key "get_grades", "grades"
   add_foreign_key "get_grades", "students"
   add_foreign_key "grades", "classrooms"
@@ -202,5 +221,6 @@ ActiveRecord::Schema.define(version: 2021_01_28_014836) do
   add_foreign_key "requirements", "subjects"
   add_foreign_key "students", "courses"
   add_foreign_key "students", "users"
+  add_foreign_key "subjects", "departments"
   add_foreign_key "workers", "users"
 end
