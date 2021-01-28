@@ -21,14 +21,14 @@ class StudentsController < ApplicationController
 
   def create
     user = user_params
-    email = "#{user[:name].split(" ")[0]}#{user[:name].split(" ")[1]}#{Student.all.length}@id.uff.br"
+    email = email_generate(user)
 
     user[:role] = 0
     user[:email] = email
 
     @user = User.new(user.except(:address, :registration))
     
-    if @user.save && address_register(@user) && student_registrate(@user);
+    if @user.save && address_register(user[:address], @user.id) && student_registrate(@user);
             render json: @user.student, status: :created
 
     else
@@ -72,6 +72,7 @@ class StudentsController < ApplicationController
       if student.save
         return true          
       else
+        # render json: student.errors
         return false
       end
       

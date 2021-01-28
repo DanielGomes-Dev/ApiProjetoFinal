@@ -99,8 +99,9 @@ The REST API to the example app is described below.
     
 
 ### Cadastro
+## Alunos
 
-`GET /students`
+`POST /students`
 
     curl -i -X POST -H "Content-Type: application/json" -d 
     '{
@@ -159,6 +160,38 @@ The REST API to the example app is described below.
     HTTP/1.1 200 OK
     X-Powered-By: Express
     Content-Type: application/json; charset=utf-8
+
+
+## Matérias
+
+`POST /subjects`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+        "subject":
+            {
+                "name":"Materia01",
+                "knowledge_area":"Matematica",
+                "workload":60
+            }
+    }'
+    https://quiet-peak-28566.herokuapp.com/subjects
+
+### Response
+
+    HTTP/1.1 201 Created
+    Content-Type: application/json; charset=utf-8
+
+        {
+        "id": 7,
+        "name": "Materia01",
+        "knowledge_area": "Matematica",
+        "workload": 60,
+        "department": "Departamento01"
+        }
+
+
+
 
 
 ### Request

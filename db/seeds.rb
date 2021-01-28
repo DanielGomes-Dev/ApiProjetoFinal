@@ -29,11 +29,24 @@ end
     })
 end
 
+
+
+
+5.times do
+    courses = Department.create({
+        name: Faker::Educator.course_name,
+        knowledge_area: Faker::Job.education_level,
+        code: Faker::Number.number(digits: 4),
+        campus: Faker::Educator.campus
+    })
+end
+
 5.times do
     courses = Course.create({
         name: Faker::Educator.course_name,
         knowledge_area: Faker::Job.education_level,
         code: Faker::Number.number(digits: 4),
         campus: Faker::Educator.campus
+        coordinator_id: 1
     })
 end

@@ -15,9 +15,13 @@ class SubjectsController < ApplicationController
 
   # POST /subjects
   def create
-    @subject = Subject.new(subject_params)
+    subject = subject_params
+    #current user department
+    subject[:department_id] = 1 
+    @subject = Subject.new(subject.except(:pre_requisito))
 
-    if @subject.save
+    if @subject.save && add_requirement_to_subejct
+
       render json: @subject, status: :created, location: @subject
     else
       render json: @subject.errors, status: :unprocessable_entity
@@ -44,8 +48,17 @@ class SubjectsController < ApplicationController
       @subject = Subject.find(params[:id])
     end
 
+    def add_requirement_to_subejct
+      return true 
+    end
+
+
+    
+    
+
+
     # Only allow a list of trusted parameters through.
     def subject_params
-      params.require(:subject).permit(:name, :workload, :knowledge_area, :school_year_id)
+      params.require(:subject).permit(:name, :workload, :knowledge_area, :school_year_id, :pre_requisito)
     end
 end
