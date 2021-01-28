@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2021_01_28_014836) do
-=======
-ActiveRecord::Schema.define(version: 2021_01_28_150336) do
->>>>>>> ad3e0c7bb96872b276f57cb1fd6c6fad7f3c83e1
+ActiveRecord::Schema.define(version: 2021_01_28_173815) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -79,6 +75,8 @@ ActiveRecord::Schema.define(version: 2021_01_28_150336) do
     t.string "campus"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "coordinator_id", null: false
+    t.index ["coordinator_id"], name: "index_courses_on_coordinator_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -206,6 +204,7 @@ ActiveRecord::Schema.define(version: 2021_01_28_150336) do
   add_foreign_key "classrooms", "school_years"
   add_foreign_key "classrooms", "subjects"
   add_foreign_key "coordinators", "users"
+  add_foreign_key "courses", "coordinators"
   add_foreign_key "departments", "coordinators"
   add_foreign_key "get_grades", "grades"
   add_foreign_key "get_grades", "students"
