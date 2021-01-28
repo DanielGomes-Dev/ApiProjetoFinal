@@ -30,6 +30,11 @@ end
 end
 
 
+coordinator = Coordinator.create({
+    registration: "111111111",
+    user_id: 1
+})
+
 
 
 5.times do
