@@ -1,6 +1,6 @@
 class AuthenticationController < ApplicationController
     def login
-        user = User.find_by!(email:params[:user][:email])
+        user = User.find_by!(cpf:params[:user][:cpf])
         user = user&.authenticate(params[:user][:password])
         if user
           token = JsonWebToken.encode(user_id: user.id);

@@ -25,7 +25,7 @@ class User < ApplicationRecord
     validates :role, numericality: { only_integer: true }
 
     #Nationality
-    validates :nationality, presence: true
+    # validates :nationality, presence: true
 
     #birthdate
     validates :birthdate, presence: true

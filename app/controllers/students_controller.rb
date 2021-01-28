@@ -21,12 +21,15 @@ class StudentsController < ApplicationController
 
   def create
     user = user_params
-    user[:role] = 0
+    email = "#{user[:name].split(" ")[0]}#{user[:name].split(" ")[1]}#{Student.all.length}@id.uff.br"
 
-    @user = User.new(user.except(:address))
+    user[:role] = 0
+    user[:email] = email
+
+    @user = User.new(user.except(:address, :registration))
     
-    if @user.save && address_register(@user)  && student_registrate(@user);
-            render json: @user, status: :created, location: @user
+    if @user.save && address_register(@user) && student_registrate(@user);
+            render json: @user.student, status: :created
 
     else
       @user.destroy
@@ -64,7 +67,7 @@ class StudentsController < ApplicationController
     def student_registrate (user)
 
       # user.registration = "#{School_year.last.year}#{Course.find(1)}#{rand(01...99)}"
-      student = Student.new({user_id:user.id, course_id:1, registration: "123456678910" });
+      student = Student.new({user_id:user.id, course_id:1, registration:user_params[:registration]});
 
       if student.save
         return true          
@@ -75,7 +78,7 @@ class StudentsController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address: {})
+      params.require(:user).permit(:name, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address:{})
   end
 
 end
