@@ -10,7 +10,11 @@ class StudentsController < ApplicationController
 
   # GET /students/1
   def show
+
+    # student = Student.find(1)
     render json: @student
+    # render json: student
+
   end
 
   # POST /students
