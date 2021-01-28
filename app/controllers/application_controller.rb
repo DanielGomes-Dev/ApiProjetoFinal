@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
     end
 
      ## registro do endereço do usuario
-     def address_register (user)
+     def address_register(user)
 
         userAddress = user_params[:address] || {}
         userAddress[:user_id] = user.id

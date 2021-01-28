@@ -14,15 +14,21 @@ class ProfessorsController < ApplicationController
   end
 
   # POST /professors
-  # def create
-  #   @professor = Professor.new(professor_params)
+   def create
+    user = user_params
+    user[:role] = 1
 
-  #   if @professor.save
-  #     render json: @professor, status: :created, location: @professor
-  #   else
-  #     render json: @professor.errors, status: :unprocessable_entity
-  #   end
-  # end
+    @user = User.new(user.except[:adress])
+
+
+     if @user.save && address_register(@user)  && professor_registrate(@user);
+            render json: @user, status: :created, location: @user
+
+    else
+      @user.destroy
+      render json: @user.errors, status: :unprocessable_entity
+
+    end
 
   # PATCH/PUT /professors/1
   def update
@@ -48,4 +54,19 @@ class ProfessorsController < ApplicationController
     def professor_params
       params.require(:professor).permit(:user_id)
     end
+    def professor_registrate (user)
+
+      user.registration = rand(000000000..99999999)
+      professor = Professor.new({user_id:user.id, registration: :user.registration });
+
+      if professor.save
+        return true          
+      else
+        return false
+      end
+      
+    end
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address: {})
+  end
 end

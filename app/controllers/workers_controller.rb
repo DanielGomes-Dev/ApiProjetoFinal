@@ -37,6 +37,12 @@ class WorkersController < ApplicationController
   def destroy
     @worker.destroy
   end
+  def edit
+    worker = Worker.find(params[:id])
+    respond_to do |format|
+      format.html { render :edit, locals: { question: question } }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
