@@ -29,7 +29,7 @@ class ProfessorsController < ApplicationController
       render json: @user.errors, status: :unprocessable_entity
 
     end
-
+  end
   # PATCH/PUT /professors/1
   def update
     if @professor.update(professor_params)
@@ -69,3 +69,4 @@ class ProfessorsController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address: {})
     end
+end
