@@ -46,7 +46,7 @@ end
         name: Faker::Educator.course_name,
         knowledge_area: Faker::Job.education_level,
         code: Faker::Number.number(digits: 4),
-        campus: Faker::Educator.campus
+        campus: Faker::Educator.campus,
         coordinator_id: 1
     })
 end
