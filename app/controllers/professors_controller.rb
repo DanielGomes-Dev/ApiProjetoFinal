@@ -68,5 +68,4 @@ class ProfessorsController < ApplicationController
     end
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address: {})
-  end
-end
+    end
