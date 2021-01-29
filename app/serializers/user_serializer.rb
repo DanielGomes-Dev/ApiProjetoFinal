@@ -5,13 +5,47 @@ class UserSerializer < ActiveModel::Serializer
               :rg,
               :cpf,
               :nationality,
+              :birthdate,
               :role,
-              :birthdate
-  def student
-    return User.find(object.user_id);
+              :informations_role,
+              :address,
+              :contact
+
+
+
+
+  def informations_role
+    if object.student.present?
+      return {
+                  course: object.student.course.name,
+                  registration: object.student.registration,              
+              }
+            
+    elsif object.professor.present?
+      return{
+              registration: object.professor.registration,
+      }
+    else
+      return {}
+    end
+      
   end
 
-  def course
-    return Course.find(object.course_id);
+  def address
+    return {
+          street: object.address.street,
+          number: object.address.number,
+          neighborhood: object.address.neighborhood,
+          complement:object.address.complement,
+          city:object.address.city,
+          state:object.address.state 
+      } 
+  end
+
+  def contact
+    return {
+      telephone: "88888888",
+      delular: "9888888"
+      }
   end
 end
