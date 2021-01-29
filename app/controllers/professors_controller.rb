@@ -16,13 +16,14 @@ class ProfessorsController < ApplicationController
   # POST /professors
    def create
     user = user_params
+
+    user[:email] = email_generate(user)
     user[:role] = 1
 
-    @user = User.new(user.except[:adress])
+    @user = User.new(user.except(:address, :registration));
 
-
-     if @user.save && address_register(@user)  && professor_registrate(@user);
-            render json: @user, status: :created, location: @user
+     if @user.save && address_register(user[:address], @user.id)  && professor_registrate(@user);
+            render json: @user.professor, status: :created
 
     else
       @user.destroy
@@ -54,10 +55,10 @@ class ProfessorsController < ApplicationController
     def professor_params
       params.require(:professor).permit(:user_id)
     end
-    def professor_registrate (user)
 
-      user.registration = rand(000000000..99999999)
-      professor = Professor.new({user_id:user.id, registration: :user.registration });
+    def professor_registrate (user)
+      puts user_params[:registration], "Registration"
+      professor = Professor.new({user_id:user.id, registration: user_params[:registration] });
 
       if professor.save
         return true          
@@ -67,6 +68,6 @@ class ProfessorsController < ApplicationController
       
     end
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address: {})
+      params.require(:professor).permit(:name, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address:{})
     end
 end

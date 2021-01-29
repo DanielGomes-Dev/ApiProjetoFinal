@@ -9,29 +9,29 @@ class StudentSerializer < ActiveModel::Serializer
               :birthdate
 
   def student
-    return User.find(object.user_id).name;
+    return object.user.name;
   end
 
 
   def email
-    return User.find(object.user_id).email;
+    return object.user.email;
   end
 
 
   def birthdate
-    return User.find(object.user_id).birthdate;
+    return object.user.birthdate;
   end
 
 
   def rg
-    return User.find(object.user_id).rg;
+    return object.user.rg;
   end
 
   def cpf
-    return User.find(object.user_id).cpf;
+    return object.user.cpf;
   end
 
   def course
-    return Course.find(object.course_id).name;
+    return object.course.name;
   end
 end

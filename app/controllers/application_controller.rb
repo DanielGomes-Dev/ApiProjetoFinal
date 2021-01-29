@@ -18,7 +18,6 @@ class ApplicationController < ActionController::API
      def address_register (address = {} ,id)
 
         address[:user_id] = id
-        puts address, 'ok'
         @userAddress = Address.new(address)
   
         if @userAddress.save
