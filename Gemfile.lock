@@ -152,6 +152,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     thor (1.1.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -177,10 +178,11 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.1.1)
   spring
+  sqlite3 (~> 1.4)
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.6.6p146
+   ruby 2.7.2p137
 
 BUNDLED WITH
    2.2.6
