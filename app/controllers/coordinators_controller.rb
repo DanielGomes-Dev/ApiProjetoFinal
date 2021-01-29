@@ -17,8 +17,8 @@ class CoordinatorsController < ApplicationController
   def create
 
     coordinator = coordinator_params
+    coordinator[:role] = 3
     email = email_generate(coordinator)
-    coordinator[:role] = 2
     coordinator[:email] = email
     @user = User.new(coordinator.except(:registration, :type_coordinator, :address));
 
@@ -58,7 +58,7 @@ class CoordinatorsController < ApplicationController
     def register_coordinator(id)
 
       coordinator = Coordinator.new({user_id: id, type_coordinator:coordinator_params[:type_coordinator], registration:coordinator_params[:registration]})
-      puts coordinator, 'ok2'
+
       if coordinator.save
         return true
       else

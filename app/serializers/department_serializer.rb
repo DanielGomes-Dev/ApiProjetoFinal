@@ -8,7 +8,7 @@ class DepartmentSerializer < ActiveModel::Serializer
              
   def coordinator
     #
-    return 'Coordenador'
+    return object.coordinator.user.name
   end
 
 end

@@ -314,3 +314,95 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
                 ]
             }
 
+# Coordenadores
+
+## Pegar Lista de Coordenadores 
+
+### Request
+
+`GET /coordinators`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/coordinators   
+### Response
+
+
+    {
+        "id": 3,
+        "coordinator": "coordinator 01",
+        "email": "coordinator013@id.uff.br",
+        "rg": "126.527.059-2",
+        "cpf": "126.527.119-00",
+        "registration": "987654321",
+        "birthdate": "1566-06-22",
+        "type_coordinator": "course",
+        "coordinating": null
+    }....
+
+
+## Receber um Coordenador pelo Seu ID
+
+
+### Request
+
+`GET /coordinators/:id`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/coordinators/4
+### Response
+
+
+    {
+        "id": 4,
+        "coordinator": "coordinator 01",
+        "email": "coordinator014@id.uff.br",
+        "rg": "126.527.000-2",
+        "cpf": "126.527.100-00",
+        "registration": "987654321",
+        "birthdate": "1566-06-22",
+        "type_coordinator": "department",
+        "coordinating": {
+        "department": "Departamento01"
+        }
+    }
+
+
+
+## Cadastrar um novo Coordenador -> Apenas Diretores
+
+### Request
+
+`POST /coordinators`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+	    "coordinator":
+            {
+                "name":"coordinator 01",
+                "password":"123456",
+                "cpf":"126.527.100-00",
+                "rg":"126.527.000-2",
+                "birthdate":"22/06/1566",
+                "type_coordinator":0,
+                "address":{
+                    "state":"Rio de Janeiro"
+                },
+                "registration":"987654321"
+            }
+        
+    }'
+    https://quiet-peak-28566.herokuapp.com/coordinators
+
+type_coordinator: 0 to Department and 1 to Course
+
+### Response
+
+    {
+        "id": 4,
+        "professor": "coordinator 01",
+        "email": "coordinator014@id.uff.br",
+        "rg": "126.527.000-2",
+        "cpf": "126.527.100-00",
+        "registration": "987654321",
+        "birthdate": "1566-06-22",
+        "type_coordinator": "department",
+        "coordinating": null
+    }

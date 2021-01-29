@@ -11,9 +11,6 @@ class UserSerializer < ActiveModel::Serializer
               :address,
               :contact
 
-
-
-
   def informations_role
     if object.student.present?
       return {
