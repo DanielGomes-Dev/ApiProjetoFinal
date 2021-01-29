@@ -22,7 +22,6 @@ class ApplicationController < ActionController::API
         if @userAddress.save
           return true
         else
-        puts @userAddress.errors, 'ok'
           return false
         end
     end

@@ -3,8 +3,8 @@ class StudentsController < ApplicationController
 
   # GET /students
   def index
+    
     @students = Student.all
-
     render json: @students
   end
 
@@ -72,7 +72,6 @@ class StudentsController < ApplicationController
       if student.save
         return true          
       else
-        # render json: student.errors
         return false
       end
       
