@@ -14,8 +14,7 @@ class SubjectSerializer < ActiveModel::Serializer
         requirement = []
         object.requirements.each do |require_subject|
             requirement.push({
-                    name: Subject.find(require_subject.subject_id).name,
-
+                    name: Subject.find(require_subject.subject_id).name
             })
         end
         return requirement
