@@ -1,6 +1,6 @@
 class JsonWebToken
     # Secret = Rails.application.secrets.secret_key_base
-    secret = "Rails.application.secrets.secret_key_base"
+    secret = "UmaSenhaMuito@@@@3333Secreta8468468484846"
 
     def self.encode(payload)
         begin
