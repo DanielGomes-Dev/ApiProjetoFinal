@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_29_130138) do
+ActiveRecord::Schema.define(version: 2021_01_29_164353) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 2021_01_29_130138) do
     t.integer "subject_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "subject_requirement"
     t.index ["subject_id"], name: "index_requirements_on_subject_id"
   end
 

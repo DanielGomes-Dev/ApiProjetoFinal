@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
-25.times do
+150.times do
     users = User.create({
         name: Faker::Name.name,
         nationality: Faker::Address.country,
@@ -16,43 +16,32 @@ require "faker"
         email: Faker::Internet.email,
         birthdate: Faker::Date.birthday,
         role: Faker::Number.between(from: 0, to: 4),
-        password: "12345"
+        password: "12345",
     })
 end
-15.times do
+20.times do
+    coordinators = Coordinator.create({
+        registration: Faker::IDNumber.brazilian_id,
+        type_coordinator: Faker::Number.number(digits: 1),
+        user_id: User.ids
+    })
+end
+50.times do
+    department = Department.create({
+        name: Faker::Educator.subject,
+        code: 2222222,
+        knowledge_area: Faker::Educator.degree,
+        campus: Faker::Educator.campus
+    })
+end
+
+
+50.times do
     subjects = Subject.create({
         name: Faker::Educator.subject,
-        workload: 1,
-        knowledge_area: Faker::Job.education_level,
-        semester: 1
-        
-    })
-end
-
-
-coordinator = Coordinator.create({
-    registration: "111111111",
-    user_id: 1
-})
-
-
-
-5.times do
-    courses = Department.create({
-        name: Faker::Educator.course_name,
-        knowledge_area: Faker::Job.education_level,
-        code: Faker::Number.number(digits: 4),
-        campus: Faker::Educator.campus,
-        coordinator_id: 1
-    })
-end
-
-5.times do
-    courses = Course.create({
-        name: Faker::Educator.course_name,
-        knowledge_area: Faker::Job.education_level,
-        code: Faker::Number.number(digits: 4),
-        campus: Faker::Educator.campus,
-        coordinator_id: 1
+        workload: 50,
+        knowledge_area: Faker::Educator.degree,
+        semester: 2,
+        department_id: Department.ids
     })
 end

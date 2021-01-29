@@ -57,13 +57,14 @@ class ProfessorsController < ApplicationController
     end
 
     def professor_registrate (user)
-      puts user_params[:registration], "Registration"
-      professor = Professor.new({user_id:user.id, registration: user_params[:registration] });
+      
+      professor = Professor.new({user_id:user.id, registration: user_params[:registration]});
 
       if professor.save
         return true          
       else
-        return false
+        render json: {err: 'Erro ao Cadastrar o Professor'}
+        # return false
       end
       
     end

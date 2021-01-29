@@ -3,10 +3,22 @@ class SubjectSerializer < ActiveModel::Serializer
     :name,
     :knowledge_area,
     :workload,
-    :department
+    :department,
+    :requirement
 
     def department
-       return Department.find(object.department_id).name
+       return object.department.name
+    end
+
+    def requirement
+        requirement = []
+        object.requirements.each do |require_subject|
+            requirement.push({
+                    name: Subject.find(require_subject.subject_id).name
+            })
+        end
+        return requirement
+
     end
 
 end
