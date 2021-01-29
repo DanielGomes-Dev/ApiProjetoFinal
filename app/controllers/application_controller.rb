@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
         puts token,"Meu tokenAqui"
         decoded = JsonWebToken.decode(token)
         # return nil unless decoded.present?
-        return 1 unless decoded.present?
+        return {err:"Falha ao decodificar o Token"} unless decoded.present?
         
         user_id = decoded[0]["user_id"]
         user = User.find(user_id)
