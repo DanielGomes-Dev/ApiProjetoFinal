@@ -19,7 +19,7 @@ class SubjectsController < ApplicationController
     #current user department
     subject[:department_id] =  1
 
-    @subject = Subject.new(subject.except(:pre_requisito))
+    @subject = Subject.new(subject.except(:requirement))
 
     if @subject.save && add_requirement_to_subejct(@subject.id)
 
@@ -51,7 +51,8 @@ class SubjectsController < ApplicationController
 
     def add_requirement_to_subejct(subject_id)
       requirement = subject_params[:requirement]
-      return true if requirement.length == 0
+      puts requirement
+      return true unless requirement.present?
 
       requirement.each do |subject_requirement|
         requirementCreate = Requirement.new({subject_id:subject_id, subject_requirement:subject_requirement})
@@ -70,6 +71,6 @@ class SubjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subject_params
-      params.require(:subject).permit(:name, :workload, :knowledge_area, pre_requisito:[])
+      params.require(:subject).permit(:name, :workload, :knowledge_area, requirement:[])
     end
 end
