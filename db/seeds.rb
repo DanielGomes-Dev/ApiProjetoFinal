@@ -77,7 +77,7 @@ end
 5.times do |x|
         coordinators = Coordinator.create({
         registration: Faker::IDNumber.brazilian_id,
-        type_coordinator: Faker::Number.number(digits: 1),
+        type_coordinator:0,
         user_id: "#{x + 2}"
     })
 end
@@ -85,17 +85,8 @@ end
 5.times do |x|
     coordinators = Coordinator.create({
         registration: Faker::IDNumber.brazilian_id,
-        type_coordinator: Faker::Number.number(digits: 1),
+        type_coordinator: 1,
         user_id: "#{x + 7}"
     })
 end
 
-5.times do |b|
-    departments = Department.create({
-    name: Faker::Name.last_name,
-    knowledge_area: Faker::Educator.degree,
-    code: 1111111111,
-    campus: Faker::Educator.campus,
-    coordinator_id: "#{b}"
-    })
-end
