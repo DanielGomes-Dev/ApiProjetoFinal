@@ -135,16 +135,16 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
         } 
 
 
-# subjects
+# Professores
 
 
 ## Pegar Lista de Professores 
 
 ### Request
 
-`GET /subjects`
+`GET /professors`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/subjects   
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/professors   
 ### Response
 
 
@@ -278,7 +278,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
             "requirement":[1,1,1,1,1,1,1]
             
         }
-}'
+    }'
     https://quiet-peak-28566.herokuapp.com/subjects
 
 ### Response
