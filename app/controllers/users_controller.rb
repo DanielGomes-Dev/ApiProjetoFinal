@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     userCurrent = current_user
-    render json: User.find(userCurrent[:id] || userCurrent[:err])
+    render json: User.find(userCurrent[:id]) || userCurrent[:err]
   end
 
   # POST /users -> Authentication
