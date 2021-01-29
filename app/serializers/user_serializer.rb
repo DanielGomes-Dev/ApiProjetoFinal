@@ -47,7 +47,7 @@ class UserSerializer < ActiveModel::Serializer
   def contact
     return {
       telephone: "88888888",
-      delular: "9888888"
+      celular: "9888888"
       }
   end
 end
