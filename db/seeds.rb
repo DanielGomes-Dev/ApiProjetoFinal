@@ -90,3 +90,36 @@ end
     })
 end
 
+5.times do |z|
+    courses = Course.create({
+        name: Faker::Educator.subject,
+        knowledge_area: Faker::Educator.degree,
+        code: 2222222,
+        campus: Faker::Educator.campus,
+        coordinator_id: "#{z + 6}"
+    })
+end
+5.times do |z|
+    departments = Department.create({
+        name: Faker::Educator.course_name,
+        knowledge_area: Faker::Educator.degree,
+        code: 2222222,
+        campus: Faker::Educator.campus,
+        coordinator_id: "#{z + 1}"
+    })
+end
+i = 0
+while i <=75 
+    p = i%5
+end
+
+
+75.times do
+        subjects = Subject.create({
+        name: Faker::Educator.subject,
+        workload: 50,
+        knowledge_area: Faker::Educator.degree,
+        semester: 2,
+        department_id: "#{p}"
+    })
+end

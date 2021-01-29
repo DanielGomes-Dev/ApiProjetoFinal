@@ -3,12 +3,6 @@ class DepartmentSerializer < ActiveModel::Serializer
              :name,
              :knowledge_area,
              :code,
-             :campus,
-             :coordinator
-             
-  def coordinator
-    #
-    return 'Coordenador'
-  end
-
+             :campus
+            
 end

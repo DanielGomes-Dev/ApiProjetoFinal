@@ -4,7 +4,7 @@ class CoordinatorSerializer < ActiveModel::Serializer
              :name
 
   def name
-      return object.user_id
+      return object.user.name
   end
 
 
