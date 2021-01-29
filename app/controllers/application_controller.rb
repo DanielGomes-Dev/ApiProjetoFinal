@@ -4,8 +4,11 @@ class ApplicationController < ActionController::API
         token = token.split(" ").last if token.present?
         return nil unless token.present?
         
+        puts token,"Meu tokenAqui"
         decoded = JsonWebToken.decode(token)
-        return nil unless decoded.present?
+        # return nil unless decoded.present?
+        return 1 unless decoded.present?
+        
         user_id = decoded[0]["user_id"]
         user = User.find(user_id)
 

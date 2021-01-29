@@ -9,6 +9,7 @@ class JsonWebToken
         begin
             return JWT.decode(token,Secret)
         rescue => exception
+            puts "Não conseguiu pegar Decodificar o token"
             return nil
         end
     end
