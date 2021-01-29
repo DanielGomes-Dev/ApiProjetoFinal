@@ -57,7 +57,8 @@ class ProfessorsController < ApplicationController
     end
 
     def professor_registrate (user)
-      professor = Professor.new({user_id:user.id, registration: user_params[:registration] });
+      
+      professor = Professor.new({user_id:user.id, registration: user_params[:registration]});
 
       if professor.save
         return true          

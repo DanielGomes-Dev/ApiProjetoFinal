@@ -23,7 +23,7 @@ class ApplicationController < ActionController::API
         if @userAddress.save
           return true
         else
-          return false
+          render json: {err: 'Erro ao Cadastrar o Endereco'}
         end
     end
 
