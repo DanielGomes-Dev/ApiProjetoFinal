@@ -23,7 +23,7 @@ class ProfessorsController < ApplicationController
     @user = User.new(user.except(:address, :registration));
 
      if @user.save && address_register(user[:address], @user.id)  && professor_registrate(@user);
-            render json: @user.professor, status: :created
+      render json: @user.professor, status: :created
 
     else
       @user.destroy
