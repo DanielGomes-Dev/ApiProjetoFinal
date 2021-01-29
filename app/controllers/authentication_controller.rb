@@ -4,6 +4,7 @@ class AuthenticationController < ApplicationController
         user = user&.authenticate(params[:user][:password])
         if user
           token = JsonWebToken.encode(user_id: user.id);
+          token = {err:"Falha ao gerar o Token"} unless token.present?
           render json: {token:token}
           return
         else

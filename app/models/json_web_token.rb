@@ -3,7 +3,11 @@ class JsonWebToken
     secret = "Rails.application.secrets.secret_key_base"
 
     def self.encode(payload)
-        return JWT.encode(payload, secret)
+        begin
+            return JWT.encode(payload, secret)
+        rescue => exception
+            return nil
+        end
     end
 
     def self.decode (token)
