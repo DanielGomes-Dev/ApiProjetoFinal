@@ -39,7 +39,9 @@ class UserSerializer < ActiveModel::Serializer
           complement:object.address.complement,
           city:object.address.city,
           state:object.address.state 
-      } 
+      } if object.address.present?
+
+    return {}
   end
 
   def contact
