@@ -1,18 +1,18 @@
 class JsonWebToken
     # Secret = Rails.application.secrets.secret_key_base
-    secret = "UmaSenhaMuito@@@@3333Secreta8468468484846"
+    Secret = "UmaSenhaMuito@@@@3333Secreta8468468484846"
 
     def self.encode(payload)
         begin
-            return JWT.encode(payload, secret)
+            return JWT.encode(payload, Secret)
         rescue => exception
             return nil
         end
     end
 
-    def self.decode (token)
+    def self.decode(token)
         begin
-            return JWT.decode(token, secret)
+            return JWT.decode(token, Secret)
         rescue => exception
             puts "Não conseguiu pegar Decodificar o token"
             return nil
