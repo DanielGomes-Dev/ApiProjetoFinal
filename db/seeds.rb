@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
-150.times do
+#MANAGER
+1.times do
     users = User.create({
         name: Faker::Name.name,
         nationality: Faker::Address.country,
@@ -15,9 +16,61 @@ require "faker"
         cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
         email: Faker::Internet.email,
         birthdate: Faker::Date.birthday,
-        role: Faker::Number.between(from: 0, to: 4),
+        role: 4,
         password: "12345",
-    })
+    })    
+end
+#COORDENADOR DE DEPARTAMENTO
+5.times do
+    users = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 3,
+        password: "12345",
+    })    
+end
+#COORDENADOR DE CURSO
+5.times do
+    users = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 2,
+        password: "12345",
+    })    
+end
+#ESTUDANTE
+50.times do
+    users = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 0,
+        password: "12345",
+    })    
+end
+#PROFESSOR
+30.times do
+    users = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 1,
+        password: "12345",
+    })    
 end
 20.times do
     coordinators = Coordinator.create({
