@@ -17,10 +17,11 @@ class SubjectsController < ApplicationController
   def create
     subject = subject_params
     #current user department
-    subject[:department_id] = 1 
+    subject[:department_id] = current_user.coordinator.department.id || 1
+
     @subject = Subject.new(subject.except(:pre_requisito))
 
-    if @subject.save && add_requirement_to_subejct
+    if @subject.save && add_requirement_to_subejct(@subject.id)
 
       render json: @subject, status: :created, location: @subject
     else
@@ -48,8 +49,10 @@ class SubjectsController < ApplicationController
       @subject = Subject.find(params[:id])
     end
 
-    def add_requirement_to_subejct
-      return true 
+    def add_requirement_to_subejct(subject_id)
+      requirement = subject_params[:requirement]
+
+
     end
 
 

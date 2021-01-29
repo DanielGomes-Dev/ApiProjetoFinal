@@ -20,11 +20,10 @@ class StudentsController < ApplicationController
   # POST /students
 
   def create
-    user = user_params
-    email = email_generate(user)
+    user = user_params 
 
     user[:role] = 0
-    user[:email] = email
+    user[:email] = email_generate(user)
 
     @user = User.new(user.except(:address, :registration))
     
@@ -78,7 +77,7 @@ class StudentsController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address:{})
+      params.require(:student).permit(:name, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address:{})
   end
 
 end
