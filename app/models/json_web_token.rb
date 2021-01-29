@@ -10,7 +10,7 @@ class JsonWebToken
         end
     end
 
-    def self.decode(token)
+    def self.decode (token)
         begin
             return JWT.decode(token, Secret)
         rescue => exception
