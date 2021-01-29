@@ -10,6 +10,9 @@ class ApplicationController < ActionController::API
         
         user_id = decoded[0]["user_id"]
         user = User.find(user_id)
+        if user.role == "student"
+          user[:infoStudent] = user.student
+        end
 
         return user
     end
