@@ -17,7 +17,7 @@ class SubjectsController < ApplicationController
   def create
     subject = subject_params
     #current user department
-    subject[:department_id] = current_user.coordinator.department.id || 1
+    subject[:department_id] =  1
 
     @subject = Subject.new(subject.except(:pre_requisito))
 
@@ -51,8 +51,16 @@ class SubjectsController < ApplicationController
 
     def add_requirement_to_subejct(subject_id)
       requirement = subject_params[:requirement]
+      return true if requirement.length == 0
 
+      requirement.each do |subject_requirement|
+        requirementCreate = Requirement.new({subject_id:subject_id, subject_requirement:subject_requirement})
+        unless requirementCreate.save
+          render json: {err: "Falha ao salvar Matéria Requirida"}
+        end
+      end
 
+        return true
     end
 
 
@@ -62,6 +70,6 @@ class SubjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subject_params
-      params.require(:subject).permit(:name, :workload, :knowledge_area, :school_year_id, :pre_requisito)
+      params.require(:subject).permit(:name, :workload, :knowledge_area, pre_requisito:[])
     end
 end
