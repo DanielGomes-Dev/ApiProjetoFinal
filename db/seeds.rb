@@ -49,7 +49,7 @@ end
     subject =  Subject.create({
         name: "NameMatéria",
         workload: 60,
-        semester: 1,
+        semester: rand(1..8),
         knowledge_area: "knowledge_area",
         department_id: department.id
     })
