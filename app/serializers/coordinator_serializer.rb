@@ -1,6 +1,6 @@
 class CoordinatorSerializer < ActiveModel::Serializer
         attributes  :id, 
-        :coordinator, 
+        :name, 
         :email,
         :rg,
         :cpf, 
@@ -9,7 +9,7 @@ class CoordinatorSerializer < ActiveModel::Serializer
         :type_coordinator,
         :coordinating
 
-      def coordinating
+      def name
         return {department:object.department.name} if object.department.present?
         return {course:object.course.name} if object.course.present? 
         return nil
