@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_111946) do
+ActiveRecord::Schema.define(version: 2021_01_30_122957) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2021_01_30_111946) do
     t.integer "school_year_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "department_id", null: false
+    t.index ["department_id"], name: "index_classrooms_on_department_id"
     t.index ["professor_id"], name: "index_classrooms_on_professor_id"
     t.index ["school_year_id"], name: "index_classrooms_on_school_year_id"
     t.index ["subject_id"], name: "index_classrooms_on_subject_id"
@@ -205,6 +207,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_111946) do
   add_foreign_key "appointments", "subjects"
   add_foreign_key "can_lectures", "professors"
   add_foreign_key "can_lectures", "subjects"
+  add_foreign_key "classrooms", "departments"
   add_foreign_key "classrooms", "professors"
   add_foreign_key "classrooms", "school_years"
   add_foreign_key "classrooms", "subjects"

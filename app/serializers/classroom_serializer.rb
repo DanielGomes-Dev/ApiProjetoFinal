@@ -1,25 +1,18 @@
 class ClassroomSerializer < ActiveModel::Serializer
   attributes :id, 
-             :subject_class,
              :name,
+             :subject,
+             :professor,
              :quantity,
              :code,
              :calendar
 
-  def classroom
-      return object.user.name
+  def subject
+      return object.subject.name
   end
 
-  def quantity
-    return object.user.quantity
-  end
-
-  def calendar
-    return object.user.calendar
-  end
-
-  def code
-    return object.user.code
+  def professor
+    return object.professor.user.name
   end
 
 end
