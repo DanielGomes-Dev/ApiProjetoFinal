@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  put '/students' ,to: 'students#update'
   resources :coordinators
   resources :relation_course_and_subjects
   resources :departments

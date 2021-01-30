@@ -40,11 +40,14 @@ class StudentsController < ApplicationController
 
   # # PATCH/PUT /students/1
   def update
-    edit = student_params
-    if @student.update(user.except(:nationality, :state, :rg, :cpf))
-      render json: @student
+    ## 02 - Criei uma funcao "address_update" que atualiza o endereco do atual logado
+    ## 03 - Chama a funcao que crio "student_update" e "address_update" caso as duas retorne true esta tudo certo
+    if student_update && address_update(user_params[:address])
+      ## 04 - Retorna as informações atualizada do usuario logado -> "Student" pois estou na rota de estudante 
+      render json: User.find(current_user[:id])
     else
-      render json: @student.errors, status: :unprocessable_entity
+      
+      render json: {err:"falha ao atualizar"}, status: :unprocessable_entity
     end
   end
 
@@ -55,8 +58,11 @@ class StudentsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+   
     def set_student
-      @student = Student.find(params[:id])
+      @student = Student.find(params[:id]) 
+     
+
     end
 
     # Only allow a list of trusted parameters through.
@@ -74,9 +80,24 @@ class StudentsController < ApplicationController
       else
         return false
         # render json: {err: 'Erro ao Cadastrar o Estudante'}
-      end
-      
+      end   
     end
+
+    ##Cria Uma Função de Update
+    def student_update
+      return nil unless current_user.student.present?
+      ## 00 - update recebe (id_do_usuario_atual, parametro a ser atualizado)
+      ## 01 - Salva e retorna um true caso de certo e um false caso de errado
+      if User.update(current_user[:id], name: user_params[:name])
+        return true          
+      else
+
+        return false
+        # return {err: 'Erro ao Cadastrar o Estudante'}
+        
+      end   
+    end
+
 
     def user_params
       params.require(:student).permit(:name, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address:{})
