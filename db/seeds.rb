@@ -39,12 +39,22 @@ end
 		registration:"987654321"
     })   
 
-    courses = Department.create({
+    department = Department.create({
         name: Faker::Educator.subject,
         knowledge_area: Faker::Educator.degree,
         campus: Faker::Educator.campus,
         coordinator_id: coordinators.id
     })
+    
+    subject =  Subject.create({
+        name: "NameMatéria",
+        workload: 60,
+        semester: 1,
+        knowledge_area: "knowledge_area",
+        department_id: department.id
+    })
+
+
 end
 #COORDENADOR DE CURSO
 5.times do
@@ -91,7 +101,6 @@ end
         course_id: courses.id
     })
 
-    puts students.user.name
 
     # end
 end
