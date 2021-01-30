@@ -148,15 +148,22 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 ### Response
 
 
-       {
-            "id": 1,
-            "professor": "Professors 01",
-            "email": "Professors011@id.uff.br",
-            "rg": "124.525.055-2",
-            "cpf": "124.525.115-00",
-            "registration": "987654321",
-            "birthdate": "1566-06-22"
-        } ....
+        {
+                "id": 28,
+                "professor": "Professor Professor",
+                "email": "professorProfessor43@id.uff.br",
+                "rg": "124.525.129-2",
+                "cpf": "124.525.129-00",
+                "registration": "987654321",
+                "birthdate": "1566-06-22",
+                "can_lecture": [
+                    "NameMatéria",
+                    "NameMatéria",
+                    "NameMatéria",
+                    "NameMatéria",
+                    "NameMatéria"
+                ]
+        }....
 
 
 ## Receber um Professor pelo Seu ID
@@ -169,15 +176,21 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
     curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/professors/1
 ### Response
 
-
-       {
-            "id": 1,
-            "professor": "Professor 01",
-            "email": "Professor011@id.uff.br",
-            "rg": "124.525.055-2",
-            "cpf": "124.525.115-00",
+        {
+            "id": 28,
+            "professor": "Professor Professor",
+            "email": "professorProfessor43@id.uff.br",
+            "rg": "124.525.129-2",
+            "cpf": "124.525.129-00",
             "registration": "987654321",
-            "birthdate": "1566-06-22"
+            "birthdate": "1566-06-22",
+            "can_lecture": [
+                "NameMatéria",
+                "NameMatéria",
+                "NameMatéria",
+                "NameMatéria",
+                "NameMatéria"
+            ]
         }
 
 
@@ -189,32 +202,43 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
     curl -i -X POST -H "Content-Type: application/json" -d 
     '{
-        "professor":
+    	"professor":
             {
-                "name":"Professor 01",
+                "name":"Professor Professor",
                 "password":"123456",
-                "cpf":"124.525.114-00",
-                "rg":"124.525.054-2",
+                "cpf":"124.525.129-00",
+                "rg":"124.525.129-2",
                 "birthdate":"22/06/1566",
                 "address":{
                     "state":"Rio de Janeiro"
                 },
+                "can_lecture":[
+                    1,2,3,4,5
+                ],
                 "registration":"987654321"
-            }
             
+            }
+	 
     }'
     https://quiet-peak-28566.herokuapp.com/professors
 
 ### Response
 
-        {
-            "id": 1,
-            "professor": "Professor 01",
-            "email": "Professor011@id.uff.br",
-            "rg": "124.525.055-2",
-            "cpf": "124.525.115-00",
+       {
+            "id": 28,
+            "professor": "Professor Professor",
+            "email": "professorProfessor43@id.uff.br",
+            "rg": "124.525.129-2",
+            "cpf": "124.525.129-00",
             "registration": "987654321",
-            "birthdate": "1566-06-22"
+            "birthdate": "1566-06-22",
+            "can_lecture": [
+                "NameMatéria",
+                "NameMatéria",
+                "NameMatéria",
+                "NameMatéria",
+                "NameMatéria"
+            ]
         }
 
 

@@ -19,9 +19,9 @@ class ProfessorsController < ApplicationController
     user[:email] = email_generate(user)
     user[:role] = 1
 
-    @user = User.new(user.except(:address, :registration));
+    @user = User.new(user.except(:address, :registration, :can_lecture));
 
-     if @user.save && address_register(user[:address], @user.id)  && professor_registrate(@user);
+     if @user.save && address_register(user[:address], @user.id)  && professor_registrate(@user) && can_lecture(@user.professor.id)
       render json: @user.professor, status: :created
 
     else
@@ -67,7 +67,16 @@ class ProfessorsController < ApplicationController
       end
       
     end
+
+    def can_lecture(professorId)
+      user_params[:can_lecture].each do |subject|
+        canlecture = CanLecture.create({professor_id:professorId,subject_id:subject})     
+        
+      end
+      return true
+    end
+
     def user_params
-      params.require(:professor).permit(:name, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address:{})
+      params.require(:professor).permit(:name, :password, :password_confirmation, :registration, :cpf, :rg, :nationality, :birthdate, address:{}, can_lecture:[])
     end
 end

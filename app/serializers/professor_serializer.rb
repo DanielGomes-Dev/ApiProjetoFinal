@@ -1,16 +1,24 @@
 class ProfessorSerializer < ActiveModel::Serializer
-    attributes  :id, 
+    attributes :id, 
               :professor,
               :email,
               :rg,
               :cpf, 
               :registration,
-              :birthdate
+              :birthdate,
+              :can_lecture
 
   def professor
     return object.user.name;
   end
 
+  def can_lecture
+    subjects = []
+    object.subjects.each do |subject|
+      subjects.push(subject.name)
+    end 
+    return subjects 
+  end
 
   def email
     return object.user.email;
