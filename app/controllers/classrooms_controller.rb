@@ -15,10 +15,13 @@ class ClassroomsController < ApplicationController
 
   # POST /classrooms
   def create
-    @classroom = Classroom.new(classroom_params)
+    class_room = classroom_params
+    class_room[:department_id] = 1
+    @classroom = Classroom.new(class_room)
+
 
     if @classroom.save
-      render json: @classroom, status: :created, location: @classroom
+      render json: @classroom, status: :created
     else
       render json: @classroom.errors, status: :unprocessable_entity
     end

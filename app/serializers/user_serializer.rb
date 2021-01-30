@@ -23,10 +23,21 @@ class UserSerializer < ActiveModel::Serializer
               registration: object.professor.registration,
       }
     elsif object.coordinator.present?
+      if object.coordinator.department.present?
       return {
               type_coordinator: object.coordinator.type_coordinator,
+              name: object.coordinator.department.name,
               registration: object.coordinator.registration
              }
+      elsif object.coordinator.course.present?
+          return {
+            type_coordinator: object.coordinator.type_coordinator,
+            name: object.coordinator.course.name,
+            registration: object.coordinator.registration
+           }
+      else
+        return{}
+      end  
     else
       return {}
     end

@@ -1,6 +1,6 @@
 class CoordinatorSerializer < ActiveModel::Serializer
         attributes  :id, 
-        :coordinator, 
+        :name, 
         :email,
         :rg,
         :cpf, 
@@ -15,7 +15,7 @@ class CoordinatorSerializer < ActiveModel::Serializer
         return nil
       end
 
-      def coordinator
+      def name
 
         return object.user.name;
 

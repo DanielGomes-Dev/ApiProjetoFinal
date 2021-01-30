@@ -2,7 +2,6 @@ class CourseSerializer < ActiveModel::Serializer
   attributes :id, 
              :name,
              :knowledge_area,
-             :code,
              :campus,
              :coordinator_id
 
