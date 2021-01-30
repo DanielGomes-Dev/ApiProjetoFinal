@@ -17,6 +17,7 @@ class SubjectsController < ApplicationController
   def create
     subject = subject_params
     #current user department
+    subject[:semester] = current_semester
     subject[:department_id] =  1
 
     @subject = Subject.new(subject.except(:requirement))
@@ -71,6 +72,6 @@ class SubjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subject_params
-      params.require(:subject).permit(:name, :workload, :knowledge_area, requirement:[])
+      params.require(:subject).permit(:name, :workload, :knowledge_area, :requirement[], :semester)
     end
 end

@@ -4,8 +4,8 @@ class SubjectSerializer < ActiveModel::Serializer
     :knowledge_area,
     :workload,
     :department,
-    :requirement
-    :department_id
+    :requirement,
+    :department_id, 
 
     def department
        return object.department.id
@@ -21,4 +21,5 @@ class SubjectSerializer < ActiveModel::Serializer
         return requirement
 
     end
+    
 end
