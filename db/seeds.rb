@@ -99,7 +99,7 @@ end
         coordinator_id: "#{z + 6}"
     })
 end
-5.times do |z|
+4.times do |z|
     departments = Department.create({
         name: Faker::Educator.course_name,
         knowledge_area: Faker::Educator.degree,
@@ -108,18 +108,14 @@ end
         coordinator_id: "#{z + 1}"
     })
 end
-i = 0
-while i <=75 
-    p = i%5
-end
 
 
-75.times do
+75.times do |c|
         subjects = Subject.create({
         name: Faker::Educator.subject,
         workload: 50,
         knowledge_area: Faker::Educator.degree,
         semester: 2,
-        department_id: "#{p}"
+        department_id: "#{c % 5}"
     })
 end
