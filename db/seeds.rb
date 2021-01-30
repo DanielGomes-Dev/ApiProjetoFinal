@@ -109,6 +109,20 @@ end
     })
 end
 
+50.times do |d|
+    students = Student.create({
+        registration: "1111111111111",
+        user_id: "#{d + 11}",
+        course_id: Faker::Number.between(from: 1, to: 5)
+    })
+end
+30.times do |f|
+    professors = Professor.create({
+        registration: "2222222222222",
+        user_id: "#{f + 61}"
+    })
+end
+
 
 75.times do |c|
         subjects = Subject.create({

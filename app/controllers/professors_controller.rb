@@ -4,7 +4,6 @@ class ProfessorsController < ApplicationController
   # GET /professors
   def index
     @professors = Professor.all
-
     render json: @professors
   end
 
