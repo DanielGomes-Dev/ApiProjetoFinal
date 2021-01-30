@@ -16,7 +16,7 @@ require "faker"
         cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
         email: Faker::Internet.email,
         birthdate: Faker::Date.birthday,
-        role: 4,
+        role: 3,
         password: "12345",
     })    
 end
@@ -30,9 +30,21 @@ end
         cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
         email: Faker::Internet.email,
         birthdate: Faker::Date.birthday,
-        role: 3,
+        role: 2,
         password: "12345",
-    })    
+    }) 
+    coordinators = Coordinator.create({
+        user_id: users.id, 
+		type_coordinator:0,
+		registration:"987654321"
+    })   
+
+    courses = Department.create({
+        name: Faker::Educator.subject,
+        knowledge_area: Faker::Educator.degree,
+        campus: Faker::Educator.campus,
+        coordinator_id: coordinators.id
+    })
 end
 #COORDENADOR DE CURSO
 5.times do
@@ -46,22 +58,43 @@ end
         role: 2,
         password: "12345",
     })    
+
+    coordinators = Coordinator.create({
+        user_id: users.id, 
+		type_coordinator:1,
+        registration:"987654321"
+    })   
+
+    courses = Course.create({
+        name: Faker::Educator.subject,
+        knowledge_area: Faker::Educator.degree,
+        campus: Faker::Educator.campus,
+        coordinator_id: coordinators.id
+    })
+
+    5.times do
+        users2 = User.create({
+            name: Faker::Name.name,
+            nationality: Faker::Address.country,
+            rg: Faker::IDNumber.brazilian_id,
+            cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+            email: Faker::Internet.email,
+            birthdate: Faker::Date.birthday,
+            role: 0,
+            password: "12345",
+        })
+        
+        students2 = Student.create({
+            registration: "1111111111111",
+            user_id: users2.id,
+            course_id: courses.id
+        })
+    end
 end
-#ESTUDANTE
-50.times do
-    users = User.create({
-        name: Faker::Name.name,
-        nationality: Faker::Address.country,
-        rg: Faker::IDNumber.brazilian_id,
-        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
-        email: Faker::Internet.email,
-        birthdate: Faker::Date.birthday,
-        role: 0,
-        password: "12345",
-    })    
-end
+
+
 #PROFESSOR
-30.times do
+5.times do
     users = User.create({
         name: Faker::Name.name,
         nationality: Faker::Address.country,
@@ -71,65 +104,15 @@ end
         birthdate: Faker::Date.birthday,
         role: 1,
         password: "12345",
-    })    
-end
-#COORDENADOR DE DEPARTAMENTO!
-5.times do |x|
-        coordinators = Coordinator.create({
-        registration: Faker::IDNumber.brazilian_id,
-        type_coordinator:0,
-        user_id: "#{x + 2}"
     })
-end
-#COORDENADOR DE CURSO!
-5.times do |x|
-    coordinators = Coordinator.create({
-        registration: Faker::IDNumber.brazilian_id,
-        type_coordinator: 1,
-        user_id: "#{x + 7}"
-    })
-end
-
-5.times do |z|
-    courses = Course.create({
-        name: Faker::Educator.subject,
-        knowledge_area: Faker::Educator.degree,
-        code: 2222222,
-        campus: Faker::Educator.campus,
-        coordinator_id: "#{z + 6}"
-    })
-end
-4.times do |z|
-    departments = Department.create({
-        name: Faker::Educator.course_name,
-        knowledge_area: Faker::Educator.degree,
-        code: 2222222,
-        campus: Faker::Educator.campus,
-        coordinator_id: "#{z + 1}"
-    })
-end
-
-50.times do |d|
-    students = Student.create({
-        registration: "1111111111111",
-        user_id: "#{d + 11}",
-        course_id: Faker::Number.between(from: 1, to: 5)
-    })
-end
-30.times do |f|
+    
     professors = Professor.create({
-        registration: "2222222222222",
-        user_id: "#{f + 61}"
+        registration: "1111111111111",
+        user_id: users.id,
+
     })
 end
 
 
 75.times do |c|
-        subjects = Subject.create({
-        name: Faker::Educator.subject,
-        workload: 50,
-        knowledge_area: Faker::Educator.degree,
-        semester: 2,
-        department_id: "#{c % 5}"
-    })
 end
