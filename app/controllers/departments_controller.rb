@@ -17,10 +17,11 @@ class DepartmentsController < ApplicationController
   def create
 
     department = department_params
+
     @department = Department.new(department)
 
     if @department.save
-      render json: @department, status: :created, location: @department
+      render json: @department, status: :created
     else
       render json: @department.errors, status: :unprocessable_entity
     end
@@ -48,6 +49,6 @@ class DepartmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def department_params
-      params.require(:department).permit(:name, :coordinator_id, :knowledge_area, :code, :campus)
+      params.require(:department).permit(:name, :email, :contact, :coordinator_id, :knowledge_area, :campus)
     end
 end
