@@ -8,7 +8,7 @@ class SubjectSerializer < ActiveModel::Serializer
     :department_id
 
     def department
-       return object.department.name
+       return object.department.id
     end
 
     def requirement
@@ -21,8 +21,4 @@ class SubjectSerializer < ActiveModel::Serializer
         return requirement
 
     end
-    def id
-        return object.department_id
-    end
-
 end
