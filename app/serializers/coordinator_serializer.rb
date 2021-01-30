@@ -13,7 +13,7 @@ class CoordinatorSerializer < ActiveModel::Serializer
         return {department:object.department.name} if object.department.present?
         return {course:object.course.name} if object.course.present? 
         return nil
-      en
+      end
 
       def coordinator
 
