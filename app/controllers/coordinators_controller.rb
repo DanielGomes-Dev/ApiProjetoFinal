@@ -32,11 +32,22 @@ class CoordinatorsController < ApplicationController
 
   # PATCH/PUT /coordinators/1
   def update
-    if @coordinator.update(coordinator_params)
-      render json: @coordinator
-    else
-      render json: @coordinator.errors, status: :unprocessable_entity
+    if current_user[:type_coordinator] = 0
+        if coordinator_update && address_update(user_params[:address])
+          render json: User.find(current_user[:id])
+        else
+          
+          render json: {err:"falha ao atualizar"}, status: :unprocessable_entity
+        end
+      else
+        if coordinator_update && address_update(user_params[:address])
+          render json: User.find(current_user[:id])
+        else
+          
+          render json: {err:"falha ao atualizar"}, status: :unprocessable_entity
+        end
     end
+    
   end
 
   # DELETE /coordinators/1
@@ -53,6 +64,16 @@ class CoordinatorsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def coordinator_params
       params.require(:coordinator).permit(:name, :rg, :birthdate, :cpf, :type_coordinator, :registration, :password, :password_confirmation, address:{})
+    end
+    def coordinator_update
+      return nil unless current_user.coordinator.present?
+      if User.update(current_user[:id], name: user_params[:name])
+        return true          
+      else
+
+        return false
+        
+      end   
     end
 
     def register_coordinator(id)
