@@ -3,6 +3,7 @@ class SubjectSerializer < ActiveModel::Serializer
     :name,
     :knowledge_area,
     :workload,
+    :semester,
     :department,
     :requirement
     :department_id

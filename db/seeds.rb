@@ -54,6 +54,43 @@ end
         department_id: department.id
     })
 
+    users3 = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 1,
+        password: "12345",
+    })
+    
+    professor = Professor.create({
+        registration: "1111111111111",
+        user_id: users3.id,
+
+    })
+
+    school_year = SchoolYear.create({
+        year: 2021,
+		semester:1,
+		status:0
+    })
+
+
+    classroom = Classroom.create({
+        name:"Departamento01",
+		code:12312312,
+		calendar:"Gragoata",
+		quantity:80,
+		subject_id:subject.id,
+		professor_id: professor.id ,
+        school_year_id:school_year.id,
+        department_id: department.id
+    })
+
+    puts classroom.id
+
 
 end
 #COORDENADOR DE CURSO
@@ -131,21 +168,6 @@ end
 
 #PROFESSOR
 5.times do
-    users = User.create({
-        name: Faker::Name.name,
-        nationality: Faker::Address.country,
-        rg: Faker::IDNumber.brazilian_id,
-        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
-        email: Faker::Internet.email,
-        birthdate: Faker::Date.birthday,
-        role: 1,
-        password: "12345",
-    })
-    
-    professors = Professor.create({
-        registration: "1111111111111",
-        user_id: users.id,
-
-    })
+   
 end
 

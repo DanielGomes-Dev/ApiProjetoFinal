@@ -234,6 +234,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
         "id": 1,
         "name": "Subject01",
         "knowledge_area": "Gragoata",
+        "semester": 1,
         "workload": 60,
         "department": "Biological Science 288",
         "requirement": []
@@ -255,6 +256,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
         "id": 1,
         "name": "Subject01",
         "knowledge_area": "Gragoata",
+        "semester": 1,
         "workload": 60,
         "department": "Biological Science 288",
         "requirement": []
@@ -410,7 +412,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 
 
-# Coordenadores
+# Departamentos
 
 ## Pegar Lista de Departamentos 
 
@@ -486,4 +488,225 @@ type_coordinator: 0 to Department and 1 to Course
         "knowledge_area": "Matematica",
         "campus": "Gragoata",
         "coordinator": "coordinator 01"
+    }
+
+
+# Cursos
+
+## Pegar Lista de Cursos 
+
+### Request
+
+`GET /courses`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/courses   
+### Response
+
+        {
+            "id": 1,
+            "name": "Business",
+            "knowledge_area": "Bachelor of Design",
+            "code": null,
+            "campus": "Mallowpond Campus",
+            "coordinator_id": 6
+        }....
+
+
+## Receber um Curso pelo Seu ID
+
+
+### Request
+
+`GET /courses/:id`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/courses/2
+### Response
+
+
+            {
+                "id": 1,
+                "name": "Business",
+                "knowledge_area": "Bachelor of Design",
+                "code": null,
+                "campus": "Mallowpond Campus",
+                "coordinator_id": 6
+            }
+
+
+## Cadastrar um novo Curso -> Apenas Diretores
+
+### Request
+
+`POST /courses`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+	    "course":
+	        {
+                "name":"Curso01",
+                "knowledge_area":"Matematica",
+                "campus":"Gragoata",
+                "coordinator_id":122,
+                "email":"osdkoask@departament.com",
+                "contact":"21988888888"	 	 
+    	    }
+    }'
+    https://quiet-peak-28566.herokuapp.com/courses
+
+
+### Response
+
+    {
+        "id": 8,
+        "name": "Curso01",
+        "knowledge_area": "Matematica",
+        "code": null,
+        "campus": "Gragoata",
+        "coordinator_id": 122
+    }
+
+
+# Periodo Letivo
+
+## Pegar Lista de Periodo 
+
+### Request
+
+`GET /school_years`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/school_years   
+### Response
+
+         {
+            "id": 2,
+            "year": 2021,
+            "semester": 1,
+            "status": "Planejamento",
+        }....
+
+
+## Receber um Periodo pelo Seu ID
+
+
+### Request
+
+`GET /school_years/:id`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/school_years/2
+### Response
+
+
+        {
+            "id": 2,
+            "year": 2021,
+            "semester": 1,
+            "status": "Planejamento",
+        }
+
+
+## Cadastrar um novo Periodo -> Apenas Diretores
+
+### Request
+
+`POST /school_years`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+    	"school_year":
+            {
+                    "year": 2021,
+                    "semester":1,
+                    "status":0
+            }
+    }'
+    https://quiet-peak-28566.herokuapp.com/school_years
+
+
+### Response
+
+    {
+        "id": 7,
+        "year": 2021,
+        "status": "Planejamento",
+        "semester": 1
+    }
+
+
+
+# Turma
+
+## Pegar Lista de Turmas 
+
+### Request
+
+`GET /classrooms`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/classrooms   
+### Response
+
+         {
+            "id": 1,
+            "name": "Turma01",
+            "subject": "NameMatéria",
+            "professor": "Wanda Hoeger",
+            "quantity": 80,
+            "code": 12312312,
+            "calendar": null
+        }....
+
+
+## Receber uma Turma pelo Seu ID
+
+
+### Request
+
+`GET /classrooms/:id`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/classrooms/1
+### Response
+
+
+        {
+            "id": 1,
+            "name": "Turma01",
+            "subject": "NameMatéria",
+            "professor": "Wanda Hoeger",
+            "quantity": 80,
+            "code": 12312312,
+            "calendar": null
+        }...
+
+## Cadastrar uma nova Turma -> Apenas Diretores
+
+### Request
+
+`POST /classrooms`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+	    "classroom":
+    	     {
+                "name":"Turma01",
+                "code":12312312,
+                "calendar":"Seg a Qua 14h as 16h",
+                "quantity":80,
+                "subject_id":1,
+                "professor_id":1,
+                "school_year_id":1
+                
+	        }
+    }'
+    https://quiet-peak-28566.herokuapp.com/classrooms
+
+
+### Response
+
+    {
+        "id": 8,
+        "name": "Turma01",
+        "subject": "NameMatéria",
+        "professor": "Winford Weissnat",
+        "quantity": 80,
+        "code": 12312312,
+        "calendar": null
     }
