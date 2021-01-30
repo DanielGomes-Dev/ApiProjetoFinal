@@ -3,7 +3,6 @@
 class Ability
   include CanCan::Ability
 
-  =begin 
   #def initialize(user)
    # if user.manager.present?
     #  can :manage, Course, Coordinator
