@@ -9,13 +9,13 @@ class CoordinatorSerializer < ActiveModel::Serializer
         :type_coordinator,
         :coordinating
 
-      def name
+      def coordinating
         return {department:object.department.name} if object.department.present?
         return {course:object.course.name} if object.course.present? 
         return nil
       end
 
-      def coordinator
+      def name
 
         return object.user.name;
 
