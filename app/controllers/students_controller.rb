@@ -40,7 +40,8 @@ class StudentsController < ApplicationController
 
   # # PATCH/PUT /students/1
   def update
-    if @student.update(student_params)
+    edit = student_params
+    if @student.update(user.except(:nationality, :state, :rg, :cpf))
       render json: @student
     else
       render json: @student.errors, status: :unprocessable_entity
