@@ -3,9 +3,14 @@ class SchoolYearsController < ApplicationController
 
   # GET /school_years
   def index
-    @school_years = SchoolYear.all
+    current_year = Date.today.year
+    if Date.today.month <= 6
+        current_semester = 1
+      else
+        current_semester = 2
+    end
 
-    render json: @school_years
+    render json:"#{current_year} -- #{current_semester}"
   end
 
   # GET /school_years/1
