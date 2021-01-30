@@ -21,7 +21,7 @@ class SubjectsController < ApplicationController
 
     @subject = Subject.new(subject.except(:requirement))
 
-    if @subject.save && add_requirement_to_subejct(@subject.id)
+    if @subject.save && add_requirement_to_subject(@subject.id)
 
       render json: @subject, status: :created, location: @subject
     else
@@ -49,7 +49,7 @@ class SubjectsController < ApplicationController
       @subject = Subject.find(params[:id])
     end
 
-    def add_requirement_to_subejct(subject_id)
+    def add_requirement_to_subject(subject_id)
       requirement = subject_params[:requirement]
       puts requirement
       return true unless requirement.present?

@@ -5,9 +5,10 @@ class SubjectSerializer < ActiveModel::Serializer
     :workload,
     :department,
     :requirement
+    :department_id
 
     def department
-       return object.department.name
+       return object.department.id
     end
 
     def requirement
@@ -20,5 +21,4 @@ class SubjectSerializer < ActiveModel::Serializer
         return requirement
 
     end
-
 end

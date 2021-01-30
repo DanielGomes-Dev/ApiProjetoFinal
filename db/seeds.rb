@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
-25.times do
+#MANAGER
+1.times do 
     users = User.create({
         name: Faker::Name.name,
         nationality: Faker::Address.country,
@@ -15,44 +16,120 @@ require "faker"
         cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
         email: Faker::Internet.email,
         birthdate: Faker::Date.birthday,
-        role: Faker::Number.between(from: 0, to: 4),
-        password: "12345"
-    })
+        role: 4,
+        password: "12345",
+    })    
 end
-15.times do
-    subjects = Subject.create({
-        name: Faker::Educator.subject,
-        workload: 1,
-        knowledge_area: Faker::Job.education_level,
-        semester: 1
-        
-    })
+#COORDENADOR DE DEPARTAMENTO
+#2 até 6 id
+5.times do 
+    users = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 3,
+        password: "12345",
+    })    
 end
-
-
-coordinator = Coordinator.create({
-    registration: "111111111",
-    user_id: 1
-})
-
-
-
+#COORDENADOR DE CURSO
 5.times do
-    courses = Department.create({
-        name: Faker::Educator.course_name,
-        knowledge_area: Faker::Job.education_level,
-        code: Faker::Number.number(digits: 4),
-        campus: Faker::Educator.campus,
-        coordinator_id: 1
+    users = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 2,
+        password: "12345",
+    })    
+end
+#ESTUDANTE
+50.times do
+    users = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 0,
+        password: "12345",
+    })    
+end
+#PROFESSOR
+30.times do
+    users = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 1,
+        password: "12345",
+    })    
+end
+#COORDENADOR DE DEPARTAMENTO!
+5.times do |x|
+        coordinators = Coordinator.create({
+        registration: Faker::IDNumber.brazilian_id,
+        type_coordinator:0,
+        user_id: "#{x + 2}"
+    })
+end
+#COORDENADOR DE CURSO!
+5.times do |x|
+    coordinators = Coordinator.create({
+        registration: Faker::IDNumber.brazilian_id,
+        type_coordinator: 1,
+        user_id: "#{x + 7}"
     })
 end
 
-5.times do
+5.times do |z|
     courses = Course.create({
-        name: Faker::Educator.course_name,
-        knowledge_area: Faker::Job.education_level,
-        code: Faker::Number.number(digits: 4),
+        name: Faker::Educator.subject,
+        knowledge_area: Faker::Educator.degree,
+        code: 2222222,
         campus: Faker::Educator.campus,
-        coordinator_id: 1
+        coordinator_id: "#{z + 6}"
+    })
+end
+4.times do |z|
+    departments = Department.create({
+        name: Faker::Educator.course_name,
+        knowledge_area: Faker::Educator.degree,
+        code: 2222222,
+        campus: Faker::Educator.campus,
+        coordinator_id: "#{z + 1}"
+    })
+end
+
+50.times do |d|
+    students = Student.create({
+        registration: "1111111111111",
+        user_id: "#{d + 11}",
+        course_id: Faker::Number.between(from: 1, to: 5)
+    })
+end
+30.times do |f|
+    professors = Professor.create({
+        registration: "2222222222222",
+        user_id: "#{f + 61}"
+    })
+end
+
+
+75.times do |c|
+        subjects = Subject.create({
+        name: Faker::Educator.subject,
+        workload: 50,
+        knowledge_area: Faker::Educator.degree,
+        semester: 2,
+        department_id: "#{c % 5}"
     })
 end

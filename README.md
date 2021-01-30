@@ -406,3 +406,84 @@ type_coordinator: 0 to Department and 1 to Course
         "type_coordinator": "department",
         "coordinating": null
     }
+
+
+
+
+# Coordenadores
+
+## Pegar Lista de Departamentos 
+
+### Request
+
+`GET /departments`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/departments   
+### Response
+
+        {
+        "id": 2,
+        "name": "Departamento01",
+        "email": "osdkoask@departament.com",
+        "contact": "21988888888",
+        "knowledge_area": "Matematica",
+        "campus": "Gragoata",
+        "coordinator": "coordinator 01"
+        }....
+
+
+## Receber um Departamento pelo Seu ID
+
+
+### Request
+
+`GET /departments/:id`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/departments/2
+### Response
+
+
+            {
+                "id": 2,
+                "name": "Departamento01",
+                "email": "osdkoask@departament.com",
+                "contact": "21988888888",
+                "knowledge_area": "Matematica",
+                "campus": "Gragoata",
+                "coordinator": "coordinator 01"
+            }
+
+
+## Cadastrar um novo Departamento -> Apenas Diretores
+
+### Request
+
+`POST /departments`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+        "department":
+            {
+                "name":"Departamento01",
+                "knowledge_area":"Matematica",
+                "campus":"Gragoata",
+                "coordinator_id":3,  
+                "email":"osdkoask@departament.com",
+                "contact":"21988888888"	 
+            
+            }
+    }'
+    https://quiet-peak-28566.herokuapp.com/departments
+
+
+### Response
+
+    {
+        "id": 2,
+        "name": "Departamento01",
+        "email": "osdkoask@departament.com",
+        "contact": "21988888888",
+        "knowledge_area": "Matematica",
+        "campus": "Gragoata",
+        "coordinator": "coordinator 01"
+    }

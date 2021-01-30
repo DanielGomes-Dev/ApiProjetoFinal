@@ -71,7 +71,7 @@ class StudentsController < ApplicationController
       if student.save
         return true          
       else
-        render json: {err: 'Erro ao Cadastrar o Professor'}
+        render json: {err: 'Erro ao Cadastrar o Estudante'}
       end
       
     end

@@ -4,7 +4,6 @@ class DepartmentSerializer < ActiveModel::Serializer
              :email,
              :contact,
              :knowledge_area,
-             :code,
              :campus,
              :coordinator
              
