@@ -676,7 +676,7 @@ type_coordinator: 0 to Department and 1 to Course
             "calendar": null
         }...
 
-## Cadastrar uma nova Turma -> Apenas Diretores
+## Cadastrar uma nova Turma -> Apenas Coordenador de Departamento
 
 ### Request
 
@@ -709,4 +709,77 @@ type_coordinator: 0 to Department and 1 to Course
         "quantity": 80,
         "code": 12312312,
         "calendar": null
+    }
+
+
+# Notas
+
+## Pegar Lista de todas as Notas 
+
+### Request
+
+`GET /grades`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/grades   
+### Response
+
+         {
+            "id": 22,
+            "student": "Tiesha Osinski PhD",
+            "grade": 10.0,
+            "professor": "Wesley Rodriguez",
+            "subject": "NameMatéria",
+            "classroom": "Departamento01"
+        }....
+
+
+## Receber uma Nota pelo Seu ID
+
+
+### Request
+
+`GET /grades/:id`
+
+    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/grades/22
+### Response
+
+
+        {
+            "id": 22,
+            "student": "Tiesha Osinski PhD",
+            "grade": 10.0,
+            "professor": "Wesley Rodriguez",
+            "subject": "NameMatéria",
+            "classroom": "classroom"
+        }
+## Cadastrar uma nova Nota -> Apenas Professores
+
+### Request
+
+`POST /grades`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+    	"grade":
+            {
+                "grade":10,
+                "student_id":5,
+                "subject_id":4,
+                "professor_id":1,
+                "classroom_id":4
+            
+            }
+    }'
+    https://quiet-peak-28566.herokuapp.com/grades
+
+
+### Response
+
+   {
+        "id": 12,
+        "student": "Miss Yang Boehm",
+        "grade": 10.0,
+        "professor": "Melissa Bartell III",
+        "subject": "NameMatéria",
+        "classroom": "classrromName"
     }

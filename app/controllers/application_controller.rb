@@ -27,6 +27,16 @@ class ApplicationController < ActionController::API
         end
     end
 
+    def address_update (address = {})
+
+
+      if Address.update(current_user.address[:id], address.except(:state))      
+        return true
+      else
+        render json: {err: 'Erro ao Cadastrar o Endereco'}
+      end
+  end
+
     def email_generate(user)
       return "#{user[:name].split(" ").first}#{user[:name].split(" ").last}#{User.all.length}@id.uff.br"
 
