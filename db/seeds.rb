@@ -103,12 +103,24 @@ end
     departments = Department.create({
         name: Faker::Educator.course_name,
         knowledge_area: Faker::Educator.degree,
-        code: 2222222,
         campus: Faker::Educator.campus,
         coordinator_id: "#{z + 1}"
     })
 end
+50.times do |z|
+    students = Student.create({
+        user_id:"#{z + 11}",
+        registration: 2222222222,     
+        course_id:"#{z % 5}" 
+    })
+end
 
+30.times do |z|
+    professors = Professor.create({
+        user_id:"#{z + 51}",
+        registration: 11111111
+    })
+end
 
 75.times do |c|
         subjects = Subject.create({
