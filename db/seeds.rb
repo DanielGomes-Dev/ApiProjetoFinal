@@ -69,28 +69,55 @@ end
         name: Faker::Educator.subject,
         knowledge_area: Faker::Educator.degree,
         campus: Faker::Educator.campus,
-        coordinator_id: coordinators.id
+        coordinator_id: coordinators.id,
     })
 
-    5.times do
-        users2 = User.create({
-            name: Faker::Name.name,
-            nationality: Faker::Address.country,
-            rg: Faker::IDNumber.brazilian_id,
-            cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
-            email: Faker::Internet.email,
-            birthdate: Faker::Date.birthday,
-            role: 0,
-            password: "12345",
-        })
-        
-        students2 = Student.create({
-            registration: "1111111111111",
-            user_id: users2.id,
-            course_id: courses.id
-        })
-    end
+    # 5.times do
+
+    users2 = User.create({
+        name: Faker::Name.name,
+        nationality: Faker::Address.country,
+        rg: Faker::IDNumber.brazilian_id,
+        cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+        email: Faker::Internet.email,
+        birthdate: Faker::Date.birthday,
+        role: 0,
+        password: "12345",
+    })
+    
+    students = Student.create({
+        registration: "1111111111111",
+        user_id: users2.id,
+        course_id: courses.id
+    })
+
+    puts students.user.name
+
+    # end
 end
+
+#Students
+
+# 5.times do
+
+#     users2 = User.create({
+#         name: Faker::Name.name,
+#         nationality: Faker::Address.country,
+#         rg: Faker::IDNumber.brazilian_id,
+#         cpf: Faker::IDNumber.brazilian_citizen_number(formatted: true),
+#         email: Faker::Internet.email,
+#         birthdate: Faker::Date.birthday,
+#         role: 0,
+#         password: "12345",
+#     })
+    
+#     students = Student.create({
+#         registration: "1111111111111",
+#         user_id: users2.id,
+#         course_id: course.id
+#     })
+
+# end
 
 
 #PROFESSOR
@@ -113,6 +140,3 @@ end
     })
 end
 
-
-75.times do |c|
-end
