@@ -41,7 +41,7 @@ class User < ApplicationRecord
     enum role: {
         student: 0,
         professor: 1,
-        coodinator: 2,
+        coordinator: 2,
         manager: 3
     } 
 end
