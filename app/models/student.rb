@@ -7,4 +7,8 @@ class Student < ApplicationRecord
 
   has_many :matriculates
   has_many :classrooms, through: :matriculates
+
+  has_many :subscriptions
+  has_many :classrooms, through: :matriculates
+
 end

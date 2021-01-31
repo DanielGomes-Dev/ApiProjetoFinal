@@ -4,7 +4,8 @@ class GradeSerializer < ActiveModel::Serializer
              :grade,
              :professor,
              :subject,
-             :classroom
+             :classroom,
+             :status
 
   def student
     return object.student.user.name  
@@ -22,6 +23,10 @@ class GradeSerializer < ActiveModel::Serializer
     return object.classroom.name
   end
   
+  def status
+    return "Aprovado" if object.grade >= 6.0
+    return "Reprovado"
+  end
   
 
 end

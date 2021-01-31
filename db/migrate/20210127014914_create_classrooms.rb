@@ -2,7 +2,7 @@ class CreateClassrooms < ActiveRecord::Migration[6.1]
   def change
     create_table :classrooms do |t|
       t.string :name
-      t.integer :code
+      t.string :code
       t.date :calendar
       t.string :subject_class
       t.integer :quantity

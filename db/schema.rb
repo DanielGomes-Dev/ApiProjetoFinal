@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_122957) do
+ActiveRecord::Schema.define(version: 2021_01_31_000906) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_122957) do
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
-    t.integer "code"
+    t.string "code"
     t.date "calendar"
     t.string "subject_class"
     t.integer "quantity"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_122957) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "department_id", null: false
+    t.integer "room"
     t.index ["department_id"], name: "index_classrooms_on_department_id"
     t.index ["professor_id"], name: "index_classrooms_on_professor_id"
     t.index ["school_year_id"], name: "index_classrooms_on_school_year_id"
@@ -127,15 +128,6 @@ ActiveRecord::Schema.define(version: 2021_01_30_122957) do
     t.index ["professor_id"], name: "index_launch_grades_on_professor_id"
   end
 
-  create_table "matriculates", force: :cascade do |t|
-    t.integer "student_id", null: false
-    t.integer "classroom_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["classroom_id"], name: "index_matriculates_on_classroom_id"
-    t.index ["student_id"], name: "index_matriculates_on_student_id"
-  end
-
   create_table "professors", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -181,6 +173,15 @@ ActiveRecord::Schema.define(version: 2021_01_30_122957) do
     t.index ["department_id"], name: "index_subjects_on_department_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "classroom_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_subscriptions_on_classroom_id"
+    t.index ["student_id"], name: "index_subscriptions_on_student_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "nationality"
@@ -222,12 +223,12 @@ ActiveRecord::Schema.define(version: 2021_01_30_122957) do
   add_foreign_key "grades", "subjects"
   add_foreign_key "launch_grades", "grades"
   add_foreign_key "launch_grades", "professors"
-  add_foreign_key "matriculates", "classrooms"
-  add_foreign_key "matriculates", "students"
   add_foreign_key "professors", "users"
   add_foreign_key "requirements", "subjects"
   add_foreign_key "students", "courses"
   add_foreign_key "students", "users"
   add_foreign_key "subjects", "departments"
+  add_foreign_key "subscriptions", "classrooms"
+  add_foreign_key "subscriptions", "students"
   add_foreign_key "workers", "users"
 end

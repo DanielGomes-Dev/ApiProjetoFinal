@@ -2,7 +2,9 @@ class GradesController < ApplicationController
   before_action :set_grade, only: [:show, :update, :destroy]
 
   # GET /grades
+
   def index
+
     @grades = Grade.all
 
     render json: @grades
@@ -15,7 +17,10 @@ class GradesController < ApplicationController
 
   # POST /grades
   def create
-    @grade = Grade.new(grade_params)
+
+    grade = grade_params
+    grade[:professor_id] = current_user.professor.id
+    @grade = Grade.new()
 
     if @grade.save
       render json: @grade, status: :created, location: @grade
