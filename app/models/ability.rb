@@ -12,10 +12,10 @@ class Ability
    if user.coordinator.present?
       can :manage, user.coordinator.Courses
       can :manage, Student
-      Durante o planejamento
+      # Durante o planejamento
       can :create, Subject, Classroom
       can :manage, Professor, Course
-      Durante o período de inscrições
+      # Durante o período de inscrições
      can :read, Subject
 
     end
@@ -25,7 +25,7 @@ class Ability
     end
 
     if user.professor.present?
-      Enquanto o período estiver aberto
+      # Enquanto o período estiver aberto
      can :manage, Grade
     end
 
