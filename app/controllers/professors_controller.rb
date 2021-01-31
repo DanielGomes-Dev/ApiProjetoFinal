@@ -32,10 +32,11 @@ class ProfessorsController < ApplicationController
   end
   # PATCH/PUT /professors/1
   def update
-    if @professor.update(professor_params)
-      render json: @professor
+    if professor_update && address_update(user_params[:address])
+      render json: User.find(current_user[:id])
     else
-      render json: @professor.errors, status: :unprocessable_entity
+      
+      render json: {err:"falha ao atualizar"}, status: :unprocessable_entity
     end
   end
 
@@ -53,6 +54,14 @@ class ProfessorsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def professor_params
       params.require(:professor).permit(:user_id)
+    end
+    def professor_update
+      return nil unless current_user.professor.present?
+      if User.update(current_user[:id], name: user_params[:name])
+        return true          
+      else
+        return false  
+      end   
     end
 
     def professor_registrate (user)
