@@ -1,52 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-
-### Request Methods
-
-
-|Method|Description|Example|
-| ------ | ------ | ----- |
-|get|For returning resources from read-only endpoint|Get raw materials|
-|post|For creating new resources|Create new raw materials|
-|put|For updating an existing resource|Editing raw materials|
-
-### Response Status Codes
-
-Another thing to notice is API response `status` codes, as a rule of thumb:
-
-|Status|Description|Example|
-| ------ | ------ | ----- |
-|200|Success|Retrieved list of students|
-|201|Created|students was created|
-|400|Bad request|Invalid entry from student name|
-|404|Not found|student not found|
-|500|Error|Exception happened on server|
-
-
 # REST API
 
 # Students
@@ -57,7 +10,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
 `GET /students`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/students   
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/students   
 ### Response
 
 
@@ -80,7 +33,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
 `GET /students/:id`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/students/1
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/students/1
 ### Response
 
 
@@ -118,7 +71,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
             }
             
     }'
-    https://quiet-peak-28566.herokuapp.com/students
+    https://rocky-savannah-33998.herokuapp.com/students
 
 ### Response
 
@@ -134,6 +87,30 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
             "birthdate": "1566-06-22"
         } 
 
+## Inscrição de Alunos em Disciplinas
+
+### Request
+
+`POST /subscriptions`
+
+    curl -i -X POST -H "Content-Type: application/json" -d 
+    '{
+	    "subscription":{
+		                "classroom_id":1
+	                    }
+    }'
+    https://rocky-savannah-33998.herokuapp.com/subscriptions
+
+### Response
+
+
+    {
+        "id": 2,
+        "student": "Jared Kuhlman",
+        "classroom": "Departamento01",
+        "professor": "Tonia Kulas",
+        "room": 205
+    }
 
 # Professores
 
@@ -144,7 +121,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
 `GET /professors`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/professors   
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/professors   
 ### Response
 
 
@@ -173,7 +150,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
 `GET /professors/:id`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/professors/1
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/professors/1
 ### Response
 
         {
@@ -220,7 +197,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
             }
 	 
     }'
-    https://quiet-peak-28566.herokuapp.com/professors
+    https://rocky-savannah-33998.herokuapp.com/professors
 
 ### Response
 
@@ -250,7 +227,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
 `GET /subjects`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/subjects   
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/subjects   
 ### Response
 
 
@@ -272,7 +249,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
 `GET /subjects/:id`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/subjects/1
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/subjects/1
 ### Response
 
 
@@ -305,7 +282,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
             
         }
     }'
-    https://quiet-peak-28566.herokuapp.com/subjects
+    https://rocky-savannah-33998.herokuapp.com/subjects
 
 ### Response
 
@@ -348,7 +325,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
 `GET /coordinators`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/coordinators   
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/coordinators   
 ### Response
 
 
@@ -372,7 +349,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
 
 `GET /coordinators/:id`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/coordinators/4
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/coordinators/4
 ### Response
 
 
@@ -415,7 +392,7 @@ Another thing to notice is API response `status` codes, as a rule of thumb:
             }
         
     }'
-    https://quiet-peak-28566.herokuapp.com/coordinators
+    https://rocky-savannah-33998.herokuapp.com/coordinators
 
 type_coordinator: 0 to Department and 1 to Course
 
@@ -444,7 +421,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /departments`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/departments   
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/departments   
 ### Response
 
         {
@@ -465,7 +442,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /departments/:id`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/departments/2
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/departments/2
 ### Response
 
 
@@ -499,7 +476,7 @@ type_coordinator: 0 to Department and 1 to Course
             
             }
     }'
-    https://quiet-peak-28566.herokuapp.com/departments
+    https://rocky-savannah-33998.herokuapp.com/departments
 
 
 ### Response
@@ -523,7 +500,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /courses`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/courses   
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/courses   
 ### Response
 
         {
@@ -543,7 +520,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /courses/:id`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/courses/2
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/courses/2
 ### Response
 
 
@@ -575,7 +552,7 @@ type_coordinator: 0 to Department and 1 to Course
                 "contact":"21988888888"	 	 
     	    }
     }'
-    https://quiet-peak-28566.herokuapp.com/courses
+    https://rocky-savannah-33998.herokuapp.com/courses
 
 
 ### Response
@@ -598,7 +575,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /school_years`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/school_years   
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/school_years   
 ### Response
 
          {
@@ -616,7 +593,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /school_years/:id`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/school_years/2
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/school_years/2
 ### Response
 
 
@@ -643,7 +620,7 @@ type_coordinator: 0 to Department and 1 to Course
                     "status":0
             }
     }'
-    https://quiet-peak-28566.herokuapp.com/school_years
+    https://rocky-savannah-33998.herokuapp.com/school_years
 
 
 ### Response
@@ -665,7 +642,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /classrooms`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/classrooms   
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/classrooms   
 ### Response
 
          {
@@ -686,7 +663,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /classrooms/:id`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/classrooms/1
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/classrooms/1
 ### Response
 
 
@@ -720,7 +697,7 @@ type_coordinator: 0 to Department and 1 to Course
                 
 	        }
     }'
-    https://quiet-peak-28566.herokuapp.com/classrooms
+    https://rocky-savannah-33998.herokuapp.com/classrooms
 
 
 ### Response
@@ -744,7 +721,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /grades`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/grades   
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/grades   
 ### Response
 
          {
@@ -764,7 +741,7 @@ type_coordinator: 0 to Department and 1 to Course
 
 `GET /grades/:id`
 
-    curl -i -H 'Accept: application/json' https://quiet-peak-28566.herokuapp.com/grades/22
+    curl -i -H 'Accept: application/json' https://rocky-savannah-33998.herokuapp.com/grades/22
 ### Response
 
 
@@ -794,7 +771,7 @@ type_coordinator: 0 to Department and 1 to Course
             
             }
     }'
-    https://quiet-peak-28566.herokuapp.com/grades
+    https://rocky-savannah-33998.herokuapp.com/grades
 
 
 ### Response
